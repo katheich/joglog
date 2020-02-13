@@ -10,6 +10,7 @@ django = "*"
 graphene-django = "*"
 django-filter = "*"
 django-graphql-jwt = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"
