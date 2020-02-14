@@ -1,16 +1,16 @@
 import graphene
 from graphene_django import DjangoObjectType
 
-from .models import EasyRunPlan
+from .models import RunPlan
 
 
-class EasyRunPlanType(DjangoObjectType):
+class RunPlanType(DjangoObjectType):
     class Meta:
-        model = EasyRunPlan
+        model = RunPlan
 
 
 class Query(graphene.ObjectType):
-    easy_runs_planned = graphene.List(EasyRunPlanType)
+    runs_planned = graphene.List(RunPlanType)
 
-    def resolve_easy_runs_planned(self, info, **kwargs):
-        return EasyRunPlan.objects.all()
+    def resolve_runs_planned(self, info, **kwargs):
+        return RunPlan.objects.all()
