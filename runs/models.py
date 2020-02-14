@@ -34,5 +34,17 @@ class RunPlan(RunBase):
     completed = models.BooleanField(default=False)
 
     def __str__(self):
+        if self.runtype == 'INTERVALS':
+            return f'Plan: {self.runtype} - {self.date}, {self.intervals}x {self.pace}'
         return f'Plan: {self.runtype} - {self.date}, {self.distance}'
 
+
+class RunLog(RunBase):
+    time = models.TimeField(auto_now=False, auto_now_add=False)
+    duration = models.DecimalField(max_digits=5, decimal_places=2)
+    avg_HR = models.IntegerField(null=True)
+    max_HR = models.IntegerField(null=True)
+    notes = models.CharField(max_length=300, null=True)
+
+    def __str__(self):
+        return f'Log: {self.runtype} - {self.date}, {self.distance}'
