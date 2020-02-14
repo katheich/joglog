@@ -48,3 +48,28 @@ class RunLog(RunBase):
 
     def __str__(self):
         return f'Log: {self.runtype} - {self.date}, {self.distance}'
+
+class Race(models.Model):
+
+    RACETYPES = (
+        ('5', '5K'),
+        ('10', '10K'),
+        ('HM', 'Half-marathon'),
+        ('M', 'Marathon'),
+        ('M+', 'Ultra marathon'),
+    )
+
+    UNITS = (
+        ('KM', 'Kilometres'),
+        ('MI', 'Miles'),
+    )
+
+    racetype = models.CharField(max_length=2, choices=RACETYPES, default='10')
+    date = models.DateField(auto_now=False, auto_now_add=False)
+    units = models.CharField(max_length=2, choices=UNITS, default='KM')
+    distance = models.IntegerField()
+    name = models.CharField(max_length=300)
+
+    def __str__(self):
+        return f'{self.name} - {self.racetype}'
+
