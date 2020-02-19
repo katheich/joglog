@@ -36,3 +36,4 @@ class Query(graphene.ObjectType):
 
     def resolve_users(self, info):
         return get_user_model().objects.all()
+        

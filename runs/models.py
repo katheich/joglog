@@ -35,8 +35,8 @@ class RunPlan(RunBase):
 
     def __str__(self):
         if self.runtype == 'INTERVALS':
-            return f'Plan: {self.runtype} - {self.date}, {self.intervals}x {self.pace}'
-        return f'Plan: {self.runtype} - {self.date}, {self.distance}'
+            return f'Plan: {self.runtype} - {self.date}, {self.intervals}x {self.pace} min/{self.units.lower()}'
+        return f'Plan: {self.runtype} - {self.date}, {self.distance} {self.units.lower()}'
 
 
 class RunLog(RunBase):
@@ -47,7 +47,9 @@ class RunLog(RunBase):
     notes = models.CharField(max_length=300, null=True)
 
     def __str__(self):
-        return f'Log: {self.runtype} - {self.date}, {self.distance}'
+        if self.runtype == 'INTERVALS':
+            return f'Log: {self.runtype} - {self.date}, {self.intervals}x {self.pace} min/{self.units.lower()}'
+        return f'Log: {self.runtype} - {self.date}, {self.distance} {self.units.lower()}'
 
 class Race(models.Model):
 
@@ -72,4 +74,3 @@ class Race(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.racetype}'
-
