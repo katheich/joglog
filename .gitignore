@@ -1,3 +1,4 @@
 .vscode/settings.json
 frontend/dist
 yarn-error.log
+.babelrc
