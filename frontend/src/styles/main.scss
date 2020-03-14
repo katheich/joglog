@@ -1,0 +1,34 @@
+/********* BULMA PRESETS ********/
+
+@charset "utf-8";
+
+// Import a Google Font
+
+
+// Set your brand colors
+
+
+
+// Update Bulma's global variables
+
+
+// Update some of Bulma's component variables
+
+
+// Import only what you need from Bulma
+@import "../../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../../node_modules/bulma/sass/base/_all.sass";
+@import "../../../node_modules/bulma/sass/elements/button.sass";
+@import "../../../node_modules/bulma/sass/elements/container.sass";
+@import "../../../node_modules/bulma/sass/elements/title.sass";
+@import "../../../node_modules/bulma/sass/form/_all.sass";
+@import "../../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../../node_modules/bulma/sass/layout/hero.sass";
+@import "../../../node_modules/bulma/sass/layout/section.sass";
+@import "../../../node_modules/bulma-extensions//bulma-checkradio/dist/css/bulma-checkradio.sass";
+
+
+
+/********* CUSTOM STYLES ********/
+
+// HOMEPAGE / MAPPAGE ***************************************** //
