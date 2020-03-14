@@ -2,6 +2,9 @@ import React from 'react'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 
+import 'bulma'
+import './styles/main.scss'
+
 import Home from './components/Home'
 
 const App = () => {
