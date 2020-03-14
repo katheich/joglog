@@ -1,15 +1,27 @@
 from django.db import models
 
 # Create your models here.
-class RunBase(models.Model):
 
-    RUNTYPES = (
-        ('EASY', 'Easy run'),
-        ('ENDURANCE', 'Endurance run'),
-        ('TEMPO', 'Tempo run'),
-        ('INTERVALS', 'Interval run'),
-        ('UNCATEGORISED', 'Uncagetorised run'),
-    )
+RUNTYPES = (
+    ('EASY', 'Easy run'),
+    ('ENDURANCE', 'Endurance run'),
+    ('TEMPO', 'Tempo run'),
+    ('INTERVALS', 'Interval run'),
+    ('UNCATEGORISED', 'Uncagetorised run'),
+)
+
+
+class Plan(models.Model):
+    runtype = models.CharField(max_length=13, choices=RUNTYPES, default='UNCATEGORISED')
+    date = models.DateField(auto_now=False, auto_now_add=False)
+    description = models.CharField(max_length=500)
+    completed = models.BooleanField(default=False)
+    skipped = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'Plan: {self.date} - {self.description}'
+
+class Run(models.Model):
 
     UNITS = (
         ('KM', 'Kilometres'),
@@ -22,55 +34,19 @@ class RunBase(models.Model):
 
     distance = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     pace = models.DecimalField(max_digits=4, decimal_places=2, null=True)
-    intervals = models.IntegerField(null=True)
-    interval_distance = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-    recovery_distance = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-
-    class Meta:
-        abstract = True
-
-
-class RunPlan(RunBase):
-    completed = models.BooleanField(default=False)
-
-    def __str__(self):
-        if self.runtype == 'INTERVALS':
-            return f'Plan: {self.runtype} - {self.date}, {self.intervals}x {self.pace} min/{self.units.lower()}'
-        return f'Plan: {self.runtype} - {self.date}, {self.distance} {self.units.lower()}'
-
-
-class RunLog(RunBase):
     time = models.TimeField(auto_now=False, auto_now_add=False)
     duration = models.DecimalField(max_digits=5, decimal_places=2)
     avg_HR = models.IntegerField(null=True)
-    max_HR = models.IntegerField(null=True)
     notes = models.CharField(max_length=300, null=True)
 
     def __str__(self):
-        if self.runtype == 'INTERVALS':
-            return f'Log: {self.runtype} - {self.date}, {self.intervals}x {self.pace} min/{self.units.lower()}'
-        return f'Log: {self.runtype} - {self.date}, {self.distance} {self.units.lower()}'
+        return f'Run: {self.date} - {self.time}, {self.distance} {self.units.lower()}'
+
 
 class Race(models.Model):
 
-    RACETYPES = (
-        ('5', '5K'),
-        ('10', '10K'),
-        ('HM', 'Half-marathon'),
-        ('M', 'Marathon'),
-        ('M+', 'Ultra marathon'),
-    )
-
-    UNITS = (
-        ('KM', 'Kilometres'),
-        ('MI', 'Miles'),
-    )
-
-    racetype = models.CharField(max_length=2, choices=RACETYPES, default='10')
     date = models.DateField(auto_now=False, auto_now_add=False)
-    units = models.CharField(max_length=2, choices=UNITS, default='KM')
-    distance = models.IntegerField()
     name = models.CharField(max_length=300)
 
     def __str__(self):
-        return f'{self.name} - {self.racetype}'
+        return f'{self.date} - {self.name}'

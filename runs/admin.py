@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import RunPlan, RunLog, Race
+from .models import Plan, Run, Race
 
 # Register your models here.
-admin.site.register(RunPlan)
-admin.site.register(RunLog)
+admin.site.register(Plan)
+admin.site.register(Run)
 admin.site.register(Race)
