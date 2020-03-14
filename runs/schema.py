@@ -12,7 +12,7 @@ class PlanType(DjangoObjectType):
 class Query(graphene.ObjectType):
     plans = graphene.List(PlanType)
 
-    def resolve_runs_planned(self, info, **kwargs):
+    def resolve_plans(self, info, **kwargs):
         return Plan.objects.all()
 
 
@@ -37,7 +37,6 @@ class CreatePlan(graphene.Mutation):
 
     def mutate(self, info, runtype, date, description, completed, skipped):
         plan = Plan(runtype=runtype, date=date, description=description, completed=completed, skipped=skipped)
-        print(plan)
         plan.save()
 
         return CreatePlan(
