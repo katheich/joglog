@@ -53,25 +53,42 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 20%);
     z-index: 2;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 5vh;
+
+    }
+
+    .button {
+      border: none;
+      display: flex;
+      flex-direction: column;
+      height: 60px;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+
 
     .title {
       font-size: 5rem;
-      margin-bottom: 20px;
       margin-right: 20px;
+      margin-left: 8vw;
     }
 
   }
 
   .shadow {
     width: 100%;
-    height: 40vh;
+    height: 30vh;
     background-color: rgba(255, 255, 255, 0.6);
     z-index: 1;
     position: absolute;
     top: 0;
-    clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
   }
 }
