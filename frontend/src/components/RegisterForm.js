@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+// import Auth from '../lib/authMethods'
 
 const initialData = {
   username: '',
@@ -16,6 +17,7 @@ const LoginForm = ({ props }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    
     return
   }
 
@@ -53,8 +55,20 @@ const LoginForm = ({ props }) => {
           {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
+      <div className="field">
+        <div className="control">
+          <input
+            type="password"
+            name="password"
+            className="input"
+            placeholder="Confirm password"
+            onChange={handleChange}
+          />
+          {errors && <small className="help is-primary">{errors}</small>}
+        </div>
+      </div>
       <button className="button is-link">
-        Login
+        Register
       </button>
     </form>
   </div>

@@ -9,12 +9,10 @@
 // Set your brand colors
 
 
+// Update some of Bulma's component variables
 
 // Update Bulma's global variables
 $family-sans-serif: 'Open Sans Condensed', sans-serif;
-
-// Update some of Bulma's component variables
-
 
 // Import only what you need from Bulma
 @import "../../../node_modules/bulma/sass/utilities/_all.sass";
@@ -28,6 +26,8 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
 @import "../../../node_modules/bulma/sass/layout/section.sass";
 
 
+
+
 /********* CUSTOM STYLES ********/
 
 * {
@@ -38,7 +38,12 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
   font-family: 'Amatic SC', sans-serif;
 }
 
+.modal-background {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
 // HOMEPAGE / MAPPAGE ***************************************** //
+
 
 #home {
  
