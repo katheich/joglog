@@ -53,7 +53,7 @@ const LoginForm = ({ props }) => {
           {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
-      <button className="button is-link">
+      <button className="button is-primary is-outlined">
         Login
       </button>
     </form>

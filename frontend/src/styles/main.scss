@@ -7,9 +7,11 @@
 
 
 // Set your brand colors
+$green: rgb(73, 230, 68);
 
 
 // Update some of Bulma's component variables
+$primary: $green;
 
 // Update Bulma's global variables
 $family-sans-serif: 'Open Sans Condensed', sans-serif;
