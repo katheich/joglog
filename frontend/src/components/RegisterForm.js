@@ -4,7 +4,8 @@ import axios from 'axios'
 
 const initialData = {
   username: '',
-  password: ''
+  password: '',
+  passwordConfirmation: ''
 }
 
 const initialErrors = ''
@@ -32,7 +33,7 @@ const LoginForm = ({ props }) => {
   return <div className="has-text-centered">
     <form className="form form-home" onSubmit={handleSubmit}>
       <div className="field">
-        <div className="control">
+        <div className="control has-icons-left">
           <input
             type="text"
             name="username"
@@ -40,11 +41,14 @@ const LoginForm = ({ props }) => {
             placeholder="Username"
             onChange={handleChange}
           />
+          <span className="icon is-small is-left">
+            <i className="fas fa-envelope"></i>
+          </span>
           {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
       <div className="field">
-        <div className="control">
+        <div className="control has-icons-left">
           <input
             type="password"
             name="password"
@@ -52,18 +56,24 @@ const LoginForm = ({ props }) => {
             placeholder="Password"
             onChange={handleChange}
           />
+          <span className="icon is-small is-left">
+            <i className="fas fa-lock"></i>
+          </span>
           {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
       <div className="field">
-        <div className="control">
+        <div className="control has-icons-left">
           <input
             type="password"
-            name="password"
+            name="passwordConfirmation"
             className="input"
             placeholder="Confirm password"
             onChange={handleChange}
           />
+          <span className="icon is-small is-left">
+            <i className={data.password === '' ? 'fas fa-exclamation' : (data.password === data.passwordConfirmation) ? 'fas fa-check' : 'fas fa-times'}></i>
+          </span>
           {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
