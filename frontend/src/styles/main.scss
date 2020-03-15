@@ -96,4 +96,24 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
     top: 0;
     clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
   }
+
+  @media only screen and (max-width: 768px) {
+    .hero-title {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 60%);
+
+      .title {
+        margin-right: 0px;
+        margin-left: 10px;
+      }
+      .container {
+        justify-content: center;
+      }
+    }
+
+    .shadow {
+      height: 40vh;
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    }
+    
+  }
 }
