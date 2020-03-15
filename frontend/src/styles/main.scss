@@ -12,6 +12,8 @@ $green: rgb(73, 230, 68);
 
 // Update some of Bulma's component variables
 $primary: $green;
+$input-focus-border-color: $primary;
+$input-focus-box-shadow-color: rgba($primary, 0.25);
 
 // Update Bulma's global variables
 $family-sans-serif: 'Open Sans Condensed', sans-serif;
