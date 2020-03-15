@@ -10,6 +10,8 @@ const Calendar = () => {
   function lastMonth() {
 
     let days = []
+
+    days.push(moment())
   
     for (let i = 1; i < 32; i++) {
       const less = moment().subtract(i, 'days')
@@ -28,15 +30,39 @@ const Calendar = () => {
   }, [])
 
 
-  return (<section className="section">
+  return (<section className="section" id="calendar">
     <div className="container">
       {console.log(dates)}
-      <div className="title">
-        Calendar
+      {console.log(moment().format('YYYYMMDD'))}
+
+      <div className="table-container">
+        <table className="table is-fullwidth is-hoverable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Plan</th>
+              <th>Distance</th>
+              <th>Time</th>
+              <th>Pace</th>
+              <th>Avg HR</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dates.map((day, i) => {
+              return <tr key={i} id={moment(day).format('YYYYMMDD')} className={moment(day).format('YYYYMMDD') === moment().format('YYYYMMDD') ? 'is-selected' : ''}><
+                th>{moment(day).format('dddd, DD MMMM YYYY')}</th>
+              <th className="plan"></th>
+              <th className="distance"></th>
+              <th className="time"></th>
+              <th className="pace"></th>
+              <th className="hr"></th>
+              <th className="notes"></th>
+              </tr>
+            })}
+          </tbody>
+        </table>
       </div>
-      {dates.map((day, i) => {
-        return <div key={i}>{moment(day).format('dddd, DD MMMM YYYY')}</div>
-      })}
     </div>
   </section>
   )

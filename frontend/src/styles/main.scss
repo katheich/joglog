@@ -14,6 +14,7 @@ $green: rgb(73, 230, 68);
 $primary: $green;
 $input-focus-border-color: $primary;
 $input-focus-box-shadow-color: rgba($primary, 0.25);
+$table-row-active-background-color: rgba($primary, 0.5);
 
 // Update Bulma's global variables
 $family-sans-serif: 'Open Sans Condensed', sans-serif;
@@ -28,7 +29,7 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
 @import "../../../node_modules/bulma/sass/components/navbar.sass";
 @import "../../../node_modules/bulma/sass/layout/hero.sass";
 @import "../../../node_modules/bulma/sass/layout/section.sass";
-
+@import "../../../node_modules/bulma/sass/elements/table.sass";
 
 
 
@@ -46,7 +47,7 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
   background-color: rgba(255, 255, 255, 0.6);
 }
 
-// HOMEPAGE / MAPPAGE ***************************************** //
+// HOMEPAGE ***************************************** //
 
 
 #home {
@@ -121,3 +122,6 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
     
   }
 }
+
+// CALENDAR ***************************************** //
+
