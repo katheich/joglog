@@ -57,5 +57,49 @@ class CreatePlan(graphene.Mutation):
             user=plan.user,
         )
 
+
+class CreateRun(graphene.Mutation):
+    id = graphene.Int()
+    runtype = graphene.String()
+    date = graphene.Date()
+    units = graphene.String()
+    distance = graphene.Decimal()
+    pace = graphene.Decimal()
+    duration = graphene.Decimal()
+    avg_HR = graphene.Int()
+    notes = graphene.String()
+    user = graphene.Field(UserType)
+
+    class Arguments:
+        runtype = graphene.String()
+        date = graphene.Date()
+        units = graphene.String()
+        distance = graphene.Decimal()
+        duration = graphene.Decimal()
+        avg_HR = graphene.Int()
+        notes = graphene.String()
+
+    @login_required
+    def mutate(self, info, runtype, date, units, distance, duration, avg_HR, notes):
+        user = info.context.user
+        pace = duration / distance
+        run = Run(runtype=runtype, date=date, units=units, distance=distance, pace=pace, duration=duration, avg_HR=avg_HR, notes=notes, user=user)
+        run.save()
+
+        return CreateRun(
+            id=run.id,
+            runtype=run.runtype,
+            date=run.date,
+            units=run.units, 
+            distance=run.distance, 
+            pace=run.pace, 
+            duration=run.duration, 
+            avg_HR=run.avg_HR, 
+            notes=run.notes, 
+            user=run.user
+        )
+
+
 class Mutation(graphene.ObjectType):
     create_plan = CreatePlan.Field()
+    create_run = CreateRun.Field()

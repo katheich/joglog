@@ -37,7 +37,6 @@ class Run(models.Model):
 
     distance = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     pace = models.DecimalField(max_digits=4, decimal_places=2, null=True)
-    time = models.TimeField(auto_now=False, auto_now_add=False)
     duration = models.DecimalField(max_digits=5, decimal_places=2)
     avg_HR = models.IntegerField(null=True)
     notes = models.CharField(max_length=300, null=True)
