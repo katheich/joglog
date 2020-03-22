@@ -1,19 +1,16 @@
 import graphene
-from graphene_django import DjangoObjectType
 
 from .models import Plan
 
-
-class PlanType(DjangoObjectType):
-    class Meta:
-        model = Plan
+from .types import PlanType
 
 
 class Query(graphene.ObjectType):
     plans = graphene.List(PlanType)
 
-    def resolve_plans(self, info, **kwargs):
+    def resolve_plans(self, info):
         return Plan.objects.all()
+
 
 
 class CreatePlan(graphene.Mutation):
