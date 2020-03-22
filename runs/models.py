@@ -41,6 +41,8 @@ class Run(models.Model):
     duration = models.DecimalField(max_digits=5, decimal_places=2)
     avg_HR = models.IntegerField(null=True)
     notes = models.CharField(max_length=300, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return f'Run: {self.date} - {self.time}, {self.distance} {self.units.lower()}'
@@ -50,6 +52,7 @@ class Race(models.Model):
 
     date = models.DateField(auto_now=False, auto_now_add=False)
     name = models.CharField(max_length=300)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.date} - {self.name}'

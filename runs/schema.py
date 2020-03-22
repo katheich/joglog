@@ -4,15 +4,19 @@ from graphql_jwt.decorators import login_required
 
 from users.schema import UserType
 
-from .models import Plan
-from .types import PlanType
+from .models import Plan, Run, Race
+from .types import PlanType, RunType, RaceType
 
 
 class Query(graphene.ObjectType):
     plans = graphene.List(PlanType)
-
+    runs = graphene.List(RunType)
+    
     def resolve_plans(self, info):
         return Plan.objects.all()
+
+    def resolve_runs(self, info):
+        return Run.objects.all()
 
 
 
