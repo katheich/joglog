@@ -11,12 +11,16 @@ from .types import PlanType, RunType, RaceType
 class Query(graphene.ObjectType):
     plans = graphene.List(PlanType)
     runs = graphene.List(RunType)
+    races = graphene.List(RaceType)
     
     def resolve_plans(self, info):
         return Plan.objects.all()
 
     def resolve_runs(self, info):
         return Run.objects.all()
+
+    def resolve_races(self, info):
+        return Race.objects.all()
 
 
 
