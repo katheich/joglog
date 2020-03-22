@@ -99,7 +99,31 @@ class CreateRun(graphene.Mutation):
             user=run.user
         )
 
+class CreateRace(graphene.Mutation):
+    id = graphene.Int()
+    date = graphene.Date()
+    name = graphene.String()
+    user = graphene.Field(UserType)
+
+    class Arguments:
+        date = graphene.Date()
+        name = graphene.String()
+
+    @login_required
+    def mutate(self, info, date, name):
+        user = info.context.user
+        race = Race(date=date, name=name, user=user)
+        race.save()
+
+        return CreateRace(
+            id=race.id,
+            name=race.name,
+            date=race.date,
+            user=race.user
+        )
+
 
 class Mutation(graphene.ObjectType):
     create_plan = CreatePlan.Field()
     create_run = CreateRun.Field()
+    create_race = CreateRace.Field()
