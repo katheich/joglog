@@ -1,4 +1,6 @@
 import graphene
+from graphql_jwt.decorators import login_required
+
 
 from users.schema import UserType
 
@@ -35,6 +37,7 @@ class CreatePlan(graphene.Mutation):
         completed = graphene.Boolean()
         skipped = graphene.Boolean()
 
+    @login_required
     def mutate(self, info, runtype, date, description, completed, skipped):
         user = info.context.user
         plan = Plan(runtype=runtype, date=date, description=description, completed=completed, skipped=skipped, user=user)
