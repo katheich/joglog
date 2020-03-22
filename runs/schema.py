@@ -1,7 +1,8 @@
 import graphene
 
-from .models import Plan
+from users.schema import UserType
 
+from .models import Plan
 from .types import PlanType
 
 
@@ -23,6 +24,8 @@ class CreatePlan(graphene.Mutation):
     completed = graphene.Boolean()
     skipped = graphene.Boolean()
 
+    user = graphene.Field(UserType)
+
     class Arguments:
         runtype = graphene.String()
         date = graphene.Date()
@@ -33,7 +36,8 @@ class CreatePlan(graphene.Mutation):
         skipped = graphene.Boolean()
 
     def mutate(self, info, runtype, date, description, completed, skipped):
-        plan = Plan(runtype=runtype, date=date, description=description, completed=completed, skipped=skipped)
+        user = info.context.user
+        plan = Plan(runtype=runtype, date=date, description=description, completed=completed, skipped=skipped, user=user)
         plan.save()
 
         return CreatePlan(
@@ -43,6 +47,7 @@ class CreatePlan(graphene.Mutation):
             description=plan.description,
             completed=plan.completed,
             skipped=plan.skipped,
+            user=plan.user,
         )
 
 class Mutation(graphene.ObjectType):

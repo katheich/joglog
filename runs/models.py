@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+
 
 # Create your models here.
 
@@ -17,6 +19,7 @@ class Plan(models.Model):
     description = models.CharField(max_length=500)
     completed = models.BooleanField(default=False)
     skipped = models.BooleanField(default=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'Plan: {self.date} - {self.description}'
