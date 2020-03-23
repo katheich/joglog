@@ -15,13 +15,17 @@ class CreateUser(graphene.Mutation):
     class Arguments:
         username = graphene.String(required=True)
         password = graphene.String(required=True)
+        password_confirmation = graphene.String(required=True)
 
-    def mutate(self, info, username, password):
+    def mutate(self, info, username, password, password_confirmation):
         user = get_user_model()(
             username=username,
         )
+        if not password == password_confirmation:
+            raise Exception('Password confirmation does not match password')
         user.set_password(password)
         user.save()
+        
 
         return CreateUser(user=user)
 

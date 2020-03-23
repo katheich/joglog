@@ -6,7 +6,7 @@ import sneaker from '../images/sneaker.png'
 
 import HomeModal from './HomeModal'
 
-const Home = () => {
+const Home = (props) => {
 
   const [modal, setModal] = useState(false)
   const [purpose, setPurpose] = useState('')
@@ -27,7 +27,7 @@ const Home = () => {
       </div>
     </div>
     <div className="shadow"></div>
-    {modal ? <HomeModal purpose={purpose} handleModal={handleModal} /> : <></>}
+    {modal ? <HomeModal purpose={purpose} props={props} handleModal={handleModal} /> : <></>}
   </section>)
 }
 

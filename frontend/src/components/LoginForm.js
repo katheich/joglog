@@ -43,6 +43,7 @@ const LoginForm = ({ props }) => {
     const token = data.tokenAuth.token
     setErrors(data.errors)
     localStorage.setItem(AUTH_TOKEN, token)
+    props.history.push('/calendar')
   }
 
   return <div className="has-text-centered">

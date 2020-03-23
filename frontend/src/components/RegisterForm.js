@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-// import Auth from '../lib/authMethods'
 
-const initialData = {
+import { Mutation } from 'react-apollo'
+import gql from 'graphql-tag'
+
+const initialInfo = {
   username: '',
   password: '',
   passwordConfirmation: ''
@@ -10,24 +11,38 @@ const initialData = {
 
 const initialErrors = ''
 
+const POST_MUTATION = gql`
+  mutation RegisterMutation($username: String!, $password: String!, $passwordConfirmation: String!) {
+    createUser (username: $username, password: $password, passwordConfirmation: $passwordConfirmation) {
+      user {
+        id
+        username
+      }
+    }
+  }
+`
 
-const LoginForm = ({ props }) => {
 
-  const [data, setData] = useState(initialData)
+const LoginForm = ({ purpose }) => {
+
+  const [info, setInfo] = useState(initialInfo)
   const [errors, setErrors] = useState(initialErrors)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
     return
   }
 
   const handleChange = (e) => {
-    const newData = { ...data, [e.target.name]: e.target.value }
+    const newInfo = { ...info, [e.target.name]: e.target.value }
     const newErrors = ''
-    setData(newData)
+    setInfo(newInfo)
     setErrors(newErrors)
-    console.log(data)
+    console.log(info)
+  }
+
+  const confirm = (data) => {
+    console.log('SUCCESSFULLY REGISTERED')
   }
 
   return <div className="has-text-centered">
@@ -72,14 +87,14 @@ const LoginForm = ({ props }) => {
             onChange={handleChange}
           />
           <span className="icon is-small is-left">
-            <i className={data.password === '' ? 'fas fa-exclamation' : (data.password === data.passwordConfirmation) ? 'fas fa-check' : 'fas fa-times'}></i>
+            <i className={info.password === '' ? 'fas fa-exclamation' : (info.password === info.passwordConfirmation) ? 'fas fa-check' : 'fas fa-times'}></i>
           </span>
           {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
-      <button className="button is-primary is-outlined">
-        Register
-      </button>
+      <Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)}>
+        {postMutation => <button onClick={postMutation} className="button is-primary is-outlined">Register</button>}
+      </Mutation>
     </form>
   </div>
 
