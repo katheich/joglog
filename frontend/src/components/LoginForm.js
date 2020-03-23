@@ -1,17 +1,28 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import { AUTH_TOKEN } from '../lib/constants'
 
-const initialData = {
+
+import { Mutation } from 'react-apollo'
+import gql from 'graphql-tag'
+
+const initialInfo = {
   username: '',
   password: ''
 }
 
 const initialErrors = ''
 
+const POST_MUTATION = gql`
+  mutation LoginMutation($username: String!, $password: String!) {
+    tokenAuth(username: $username, password: $password) {
+      token
+    }
+  }
+`
 
 const LoginForm = ({ props }) => {
 
-  const [data, setData] = useState(initialData)
+  const [info, setInfo] = useState(initialInfo)
   const [errors, setErrors] = useState(initialErrors)
 
   const handleSubmit = (e) => {
@@ -20,11 +31,18 @@ const LoginForm = ({ props }) => {
   }
 
   const handleChange = (e) => {
-    const newData = { ...data, [e.target.name]: e.target.value }
+    const newInfo = { ...info, [e.target.name]: e.target.value }
     const newErrors = ''
-    setData(newData)
+    setInfo(newInfo)
     setErrors(newErrors)
-    console.log(data)
+    console.log(info)
+  }
+
+  const confirm = (data) => {
+    console.log('SUCCESS', data)
+    const token = data.tokenAuth.token
+    setErrors(data.errors)
+    localStorage.setItem(AUTH_TOKEN, token)
   }
 
   return <div className="has-text-centered">
@@ -59,9 +77,9 @@ const LoginForm = ({ props }) => {
           {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
-      <button className="button is-primary is-outlined">
-        Login
-      </button>
+      <Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)}>
+        {postMutation => <button onClick={postMutation} className="button is-primary is-outlined">Login</button>}
+      </Mutation>
     </form>
   </div>
 
