@@ -5,6 +5,8 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
+import CalendarRow from './CalendarRow'
+
 
 const CALENDAR_QUERY = gql`
   {
@@ -132,30 +134,7 @@ const Calendar = ({ client }) => {
           </thead>
           <tbody>
             {dates.map((day, i) => {
-              return <tr key={i} id={moment(day).format('YYYYMMDD')} className={moment(day).format('YYYYMMDD') === moment().format('YYYYMMDD') ? 'is-selected' : ''}><
-                th>{moment(day).format('dddd, DD MMMM YYYY')}</th>
-              <th className="plan">
-                {info.races && info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) ? <span>{info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).name}</span> : ''}
-                {info.plans && info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) ? <span>{info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).description}, {info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).runtype}</span> : ''}
-              </th>
-              {info.runs && info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) 
-                ? <>
-                <th className="distance">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).distance}</th>
-                <th className="time">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).duration}</th>
-                <th className="pace">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).pace}</th>
-                <th className="hr">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).avgHr}</th>
-                <th className="notes">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).notes}</th>
-                </> 
-                : <>
-                <th className="distance"></th>
-                <th className="time"></th>
-                <th className="pace"></th>
-                <th className="hr"></th>
-                <th className="notes"></th>
-                </>}
-
-
-              </tr>
+              return <CalendarRow key={i} day={day} info={info} />
             })}
           </tbody>
         </table>
