@@ -46,6 +46,7 @@ const LoginForm = ({ purpose }) => {
   }
 
   return <div className="has-text-centered">
+    {console.log(errors)}
     <form className="form form-home" onSubmit={handleSubmit}>
       <div className="field">
         <div className="control has-icons-left">
@@ -59,7 +60,6 @@ const LoginForm = ({ purpose }) => {
           <span className="icon is-small is-left">
             <i className="fas fa-envelope"></i>
           </span>
-          {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
       <div className="field">
@@ -74,7 +74,6 @@ const LoginForm = ({ purpose }) => {
           <span className="icon is-small is-left">
             <i className="fas fa-lock"></i>
           </span>
-          {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
       <div className="field">
@@ -89,12 +88,12 @@ const LoginForm = ({ purpose }) => {
           <span className="icon is-small is-left">
             <i className={info.password === '' ? 'fas fa-exclamation' : (info.password === info.passwordConfirmation) ? 'fas fa-check' : 'fas fa-times'}></i>
           </span>
-          {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
-      <Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)}>
+      <Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
         {postMutation => <button onClick={postMutation} className="button is-primary is-outlined">Register</button>}
       </Mutation>
+      {errors && <small className="help is-warning">{errors}</small>}
     </form>
   </div>
 

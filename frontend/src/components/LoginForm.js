@@ -60,7 +60,6 @@ const LoginForm = ({ props }) => {
           <span className="icon is-small is-left">
             <i className="fas fa-envelope"></i>
           </span>
-          {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
       <div className="field">
@@ -75,12 +74,12 @@ const LoginForm = ({ props }) => {
           <span className="icon is-small is-left">
             <i className="fas fa-lock"></i>
           </span>
-          {errors && <small className="help is-primary">{errors}</small>}
         </div>
       </div>
-      <Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)}>
+      <Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data) } onError={err => setErrors(err.message)}>
         {postMutation => <button onClick={postMutation} className="button is-primary is-outlined">Login</button>}
       </Mutation>
+      {errors && <small className="help is-warning">{errors}</small>}
     </form>
   </div>
 
