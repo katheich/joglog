@@ -3,6 +3,7 @@ import moment from 'moment'
 
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 
 
 const CALENDAR_QUERY = gql`
@@ -40,12 +41,12 @@ const CALENDAR_QUERY = gql`
 `
 
 
-const Calendar = () => {
+const Calendar = ({ client }) => {
 
   const [dates, setDates] = useState([])
   const [info, setInfo] = useState([])
   const [errors, setErrors] = useState([])
-
+  const [data, setData] = useState([])
 
   function lastMonth() {
 
@@ -70,18 +71,41 @@ const Calendar = () => {
   }, [])
 
 
+  function cleanUserData(data) {
+    const newInfo = {}
+
+    newInfo.plans = data.myPlans.edges.map(plan => plan.node)
+    newInfo.runs = data.myRuns.edges.map(run => run.node)
+    newInfo.races = data.myRaces.edges.map(race => race.node)
+
+    return newInfo
+  }
+
+  useEffect(() => {
+
+    if (data.myPlans || data.myRuns || data.myRaces) {
+      setInfo(cleanUserData(data))
+    }
+  }, [data])
+
+
   return (<section className="section" id="calendar">
-    {console.log('DATA', info)}
+    {console.log('INFO', info)}
+    {/* {console.log('DATA', data)} */}
     {console.log('ERRORS', errors)}
+
     <Query query={CALENDAR_QUERY}>
       {({ loading, error, data }) => {
-        if (loading) return <div>Fetching</div>
+        if (loading) {
+          return null
+        }
         if (error) {
           setErrors(error.message)
           return null
         }
-        setInfo(data)  
-        return null   
+        setData(data)
+        return null  
+        
       }}
     </Query>
 

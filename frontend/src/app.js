@@ -40,7 +40,7 @@ const App = () => {
   return <HashRouter>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/calendar" component={Calendar} />
+      <Route exact path="/calendar" render={(props) => <Calendar props={props} client={client}/>} />
     </Switch>
   </HashRouter >
 }
