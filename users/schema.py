@@ -25,7 +25,7 @@ class CreateUser(graphene.Mutation):
             raise Exception('Password confirmation does not match password')
         user.set_password(password)
         user.save()
-        
+
         return CreateUser(user=user)
 
 

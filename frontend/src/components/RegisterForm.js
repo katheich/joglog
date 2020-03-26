@@ -23,7 +23,7 @@ const POST_MUTATION = gql`
 `
 
 
-const LoginForm = ({ purpose }) => {
+const LoginForm = () => {
 
   const [info, setInfo] = useState(initialInfo)
   const [errors, setErrors] = useState(initialErrors)
@@ -41,7 +41,7 @@ const LoginForm = ({ purpose }) => {
     console.log(info)
   }
 
-  const confirm = (data) => {
+  const confirm = () => {
     console.log('SUCCESSFULLY REGISTERED')
   }
 

@@ -39,8 +39,8 @@ class Query(graphene.ObjectType):
         return Run.objects.filter(user=info.context.user)
 
     @login_required
-    def resolve_my_races(self, info):
-        return Race.objects.filter(user=info.context.user)
+    def resolve_my_(self, info):
+        return Plan.objects.filter(user=info.context.user)
 
 
 
@@ -114,12 +114,12 @@ class CreateRun(graphene.Mutation):
             id=run.id,
             runtype=run.runtype,
             date=run.date,
-            units=run.units, 
-            distance=run.distance, 
-            pace=run.pace, 
-            duration=run.duration, 
-            avg_HR=run.avg_HR, 
-            notes=run.notes, 
+            units=run.units,
+            distance=run.distance,
+            pace=run.pace,
+            duration=run.duration,
+            avg_HR=run.avg_HR,
+            notes=run.notes,
             user=run.user
         )
 

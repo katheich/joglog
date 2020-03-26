@@ -3,7 +3,6 @@ import moment from 'moment'
 
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import { InMemoryCache } from 'apollo-cache-inmemory'
 
 import CalendarRow from './CalendarRow'
 
@@ -45,7 +44,7 @@ const CALENDAR_QUERY = gql`
 `
 
 
-const Calendar = ({ client }) => {
+const Calendar = () => {
 
   const [dates, setDates] = useState([])
   const [info, setInfo] = useState([])
