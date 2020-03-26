@@ -1,24 +1,29 @@
 import React from 'react'
 import moment from 'moment'
 
-const CalendarRow = ({ day, info }) => (
+const CalendarRow = ({ day, info }) => {
+
+  const date = moment(day).format('YYYYMMDD')
+
+  const plan = info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === date)
+  const run = info.runs.find(run => moment(run.date).format('YYYYMMDD') === date)
+  const race = info.races.find(race => moment(race.date).format('YYYYMMDD') === date)
 
   
-  <tr id={moment(day).format('YYYYMMDD')} className={moment(day).format('YYYYMMDD') === moment().format('YYYYMMDD') ? 'is-selected' : ''}>
+  return (<tr id={date} className={date === moment().format('YYYYMMDD') ? 'is-selected' : ''}>
     <th>{moment(day).format('dddd, DD MMMM YYYY')}</th>
 
     <th className="plan">
-      {info.races && info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) ? <span>{info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).name}</span> : ''}
-      {info.plans && info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) ? <span>{info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).description}, {info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).runtype}</span> : ''}
+      {race && race.name}
+      {plan && plan.description + ', ' + plan.runtype}
     </th>
 
-    {info.runs && info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) 
-      ? <>
-      <th className="distance">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).distance} {info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).units.toLowerCase()}</th>
-      <th className="time">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).duration} min</th>
-      <th className="pace">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).pace} min / {info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).units.toLowerCase()}</th>
-      <th className="hr">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).avgHr} bpm</th>
-      <th className="notes">{info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).notes}</th>
+    {run ? <>
+      <th className="distance">{run.distance} {run.units.toLowerCase()}</th>
+      <th className="time">{run.duration} min</th>
+      <th className="pace">{run.pace} min / {run.units.toLowerCase()}</th>
+      <th className="hr">{run.avgHr} bpm</th>
+      <th className="notes">{run.notes}</th>
       </> 
       : <>
       <th className="distance"></th>
@@ -28,9 +33,9 @@ const CalendarRow = ({ day, info }) => (
       <th className="notes"></th>
       </>}
 
-  </tr>
+  </tr>)
           
-)
+}
 
 
 export default CalendarRow
