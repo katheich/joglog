@@ -135,6 +135,7 @@ const Calendar = () => {
             {info.plans && info.runs && info.races && dates.map((day, i) => {
               return <CalendarRow key={i} day={day} info={info} />
             })}
+            {errors && <span>{errors}</span>}
           </tbody>
         </table>
       </div>
