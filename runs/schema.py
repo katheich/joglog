@@ -14,13 +14,15 @@ class Query(graphene.ObjectType):
     races = graphene.List(RaceType)
     my_plans = DjangoFilterConnectionField(PlanType)
 
-    
+    @login_required
     def resolve_plans(self, info):
         return Plan.objects.all()
 
+    @login_required
     def resolve_runs(self, info):
         return Run.objects.all()
 
+    @login_required
     def resolve_races(self, info):
         return Race.objects.all()
 
