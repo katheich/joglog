@@ -78,6 +78,8 @@ const Calendar = ({ client }) => {
     newInfo.runs = data.myRuns.edges.map(run => run.node)
     newInfo.races = data.myRaces.edges.map(race => race.node)
 
+    console.log(moment(newInfo.plans[0].date).format('YYYYMMDD'))
+
     return newInfo
   }
 
@@ -110,8 +112,8 @@ const Calendar = ({ client }) => {
     </Query>
 
     <div className="container">
-      {console.log(dates)}
-      {console.log(moment().format('YYYYMMDD'))}
+      {/* {console.log(dates)} */}
+      {/* {console.log(moment().format('YYYYMMDD'))} */}
 
       <div className="table-container">
         <table className="table is-fullwidth is-hoverable">
@@ -130,7 +132,10 @@ const Calendar = ({ client }) => {
             {dates.map((day, i) => {
               return <tr key={i} id={moment(day).format('YYYYMMDD')} className={moment(day).format('YYYYMMDD') === moment().format('YYYYMMDD') ? 'is-selected' : ''}><
                 th>{moment(day).format('dddd, DD MMMM YYYY')}</th>
-              <th className="plan"></th>
+              <th className="plan">
+                {info.races && info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) ? <span>{info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).description}</span> : ''}
+                {info.plans && info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) ? <span>{info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).description}, {info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).runtype}</span> : ''}
+              </th>
               <th className="distance"></th>
               <th className="time"></th>
               <th className="pace"></th>
