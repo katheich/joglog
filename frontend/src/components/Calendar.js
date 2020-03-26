@@ -8,7 +8,10 @@ import CalendarRow from './CalendarRow'
 
 
 const CALENDAR_QUERY = gql`
-  {
+  { 
+    me {
+      username
+    }
     myPlans {
       edges {
         node {
@@ -95,8 +98,9 @@ const Calendar = () => {
 
 
   return (<section className="section" id="calendar">
+  
     {console.log('INFO', info)}
-    {/* {console.log('DATA', data)} */}
+    {console.log('DATA', data)}
     {console.log('ERRORS', errors)}
 
     <Query query={CALENDAR_QUERY}>
@@ -115,8 +119,12 @@ const Calendar = () => {
     </Query>
 
     <div className="container">
-      {/* {console.log(dates)} */}
-      {/* {console.log(moment().format('YYYYMMDD'))} */}
+
+      <div className="level">
+        <div className="level-right">
+          <div className="level-item subtitle is-size-4"> Hello, {data.me && data.me.username}!</div>
+        </div>
+      </div>
 
       <div className="table-container">
         <table className="table is-fullwidth is-hoverable">
