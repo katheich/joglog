@@ -1,10 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
+
+
+const CALENDAR_QUERY = gql`
+  {
+    myPlans {
+      edges {
+        node {
+          date
+          description
+          runtype
+        }
+      }
+    }
+    myRuns {
+      edges {
+        node {
+          date
+          distance
+          duration
+          pace
+          units
+          runtype
+        }
+      } 
+    }
+    myRaces {
+      edges {
+        node {
+          name
+          date
+        }
+      }
+    }
+  }
+`
+
 
 const Calendar = () => {
 
   const [dates, setDates] = useState([])
+  const [info, setInfo] = useState([])
+  const [errors, setErrors] = useState([])
 
 
   function lastMonth() {
@@ -31,6 +71,20 @@ const Calendar = () => {
 
 
   return (<section className="section" id="calendar">
+    {console.log('DATA', info)}
+    {console.log('ERRORS', errors)}
+    <Query query={CALENDAR_QUERY}>
+      {({ loading, error, data }) => {
+        if (loading) return <div>Fetching</div>
+        if (error) {
+          setErrors(error.message)
+          return null
+        }
+        setInfo(data)  
+        return null   
+      }}
+    </Query>
+
     <div className="container">
       {console.log(dates)}
       {console.log(moment().format('YYYYMMDD'))}
