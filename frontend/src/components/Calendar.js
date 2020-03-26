@@ -135,7 +135,7 @@ const Calendar = ({ client }) => {
               return <tr key={i} id={moment(day).format('YYYYMMDD')} className={moment(day).format('YYYYMMDD') === moment().format('YYYYMMDD') ? 'is-selected' : ''}><
                 th>{moment(day).format('dddd, DD MMMM YYYY')}</th>
               <th className="plan">
-                {info.races && info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) ? <span>{info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).description}</span> : ''}
+                {info.races && info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) ? <span>{info.races.find(race => moment(race.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).name}</span> : ''}
                 {info.plans && info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) ? <span>{info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).description}, {info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')).runtype}</span> : ''}
               </th>
               {info.runs && info.runs.find(run => moment(run.date).format('YYYYMMDD') === moment(day).format('YYYYMMDD')) 
