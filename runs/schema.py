@@ -13,6 +13,10 @@ class Query(graphene.ObjectType):
     runs = graphene.List(RunType)
     races = graphene.List(RaceType)
     my_plans = DjangoFilterConnectionField(PlanType)
+    my_runs = DjangoFilterConnectionField(RunType)
+    my_races = DjangoFilterConnectionField(RaceType)
+
+
 
     @login_required
     def resolve_plans(self, info):
@@ -29,6 +33,14 @@ class Query(graphene.ObjectType):
     @login_required
     def resolve_my_plans(self, info):
         return Plan.objects.filter(user=info.context.user)
+
+    @login_required
+    def resolve_my_runs(self, info):
+        return Run.objects.filter(user=info.context.user)
+
+    @login_required
+    def resolve_my_races(self, info):
+        return Race.objects.filter(user=info.context.user)
 
 
 
