@@ -7,6 +7,8 @@ from .models import Plan, Run, Race
 class PlanType(DjangoObjectType):
     class Meta:
         model = Plan
+        filter_fields = ['user']
+        interfaces = (graphene.relay.Node, )   
 
 class RunType(DjangoObjectType):
     class Meta:

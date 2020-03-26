@@ -1,6 +1,6 @@
 import graphene
 from graphql_jwt.decorators import login_required
-
+from graphene_django.filter import DjangoFilterConnectionField
 
 from users.schema import UserType
 
@@ -12,6 +12,8 @@ class Query(graphene.ObjectType):
     plans = graphene.List(PlanType)
     runs = graphene.List(RunType)
     races = graphene.List(RaceType)
+    my_plans = DjangoFilterConnectionField(PlanType)
+
     
     def resolve_plans(self, info):
         return Plan.objects.all()
@@ -21,6 +23,10 @@ class Query(graphene.ObjectType):
 
     def resolve_races(self, info):
         return Race.objects.all()
+
+    @login_required
+    def resolve_my_plans(self, info):
+        return Plan.objects.filter(user=info.context.user)
 
 
 
