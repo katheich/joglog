@@ -152,6 +152,16 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
       flex-direction: row;
       justify-content: space-around;
     }
+
+    .durationfields, .distancefields {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+
+      .field {
+        margin-right: 10px;
+      }
+    }
   }
 
   .button {

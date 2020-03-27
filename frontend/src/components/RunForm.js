@@ -4,6 +4,8 @@ import moment from 'moment'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import { formatTime, deformatTime } from '../lib/formatting'
+
 const POST_MUTATION = gql`
   mutation createRun($units: String!, $date: Date!, $runtype: String!, $distance: Decimal!, $duration: Decimal!, $avgHr: Int!, $notes: String!) {
     createRun (units: $units, date: $date, runtype: $runtype, distance: $distance, duration:$duration, avgHr:$avgHr, notes:$notes) {
@@ -44,17 +46,27 @@ const RunForm = ( { date, toggleModal, run }) => {
 
   const [info, setInfo] = useState(initialInfo)
   const [errors, setErrors] = useState(initialErrors)
+  const [duration, setDuration] = useState({ hours: '', minutes: '', seconds: ''})
 
   const handleSubmit = (e) => {
     e.preventDefault()
   }
 
   const handleChange = (e) => {
-    const newInfo = { ...info, [e.target.name]: e.target.value }
+
+    if (e.target.name === 'hours' || e.target.name === 'minutes' || e.target.name === 'seconds') {
+      const newDuration = { ...duration, [e.target.name]: e.target.value }
+      setDuration(newDuration)
+      const decDuration = deformatTime(newDuration.hours, newDuration.minutes, newDuration.seconds)
+      setInfo({ ...info, duration: decDuration })
+
+    } else {
+      const newInfo = { ...info, [e.target.name]: e.target.value }
+      setInfo(newInfo)
+      
+    }
     const newErrors = ''
-    setInfo(newInfo)
     setErrors(newErrors)
-    console.log(info)
   }
 
   const confirm = () => {
@@ -73,52 +85,58 @@ const RunForm = ( { date, toggleModal, run }) => {
         units: run.units,
         date: run.date
       }
+
+      const formattedDuration = formatTime(run.duration, 'hms')
+      setDuration({ hours: formattedDuration.slice(0, 2), minutes: formattedDuration.slice(3, 5), seconds: formattedDuration.slice(6, 8) })
       setInfo(oldRun)
     }
   }, [])
 
   return <div className="has-text-centered">
-    {console.log('errors', errors)}
+    {/* {console.log('errors', errors)} */}
     {console.log('editing', info)}
-    {console.log('previous data', run)}
+    {/* {console.log('previous data', run)} */}
+    {console.log('duration', duration)}
     <form className="form form-home" onSubmit={handleSubmit}>
-
-      <div className="field">
-        <div className="control has-icons-left">
-          <input
-            type="text"
-            name="distance"
-            className="input is-primary"
-            placeholder="Distance"
-            onChange={handleChange}
-            value={info.distance}
-          />
-          <span className="icon is-small is-left">
-            <i className="fas fa-pencil-ruler"></i>
-          </span>
-        </div>
-      </div>
-
-      <div className="field">
-        <div className="control">
-          <div className='control has-icons-left'>
-            <div className='select is-primary'>
-              <select
-                onChange={handleChange}
-                name='units'>
-                <option value='' selected={run ? '' : 'selected'} disabled="disabled">Select units</option>
-                <option value='KM' selected={info.runtype === 'KM' ? 'selected' : ''}>kilometres</option>
-                <option value='MI' selected={info.runtype === 'MI' ? 'selected' : ''}>miles</option>
-              </select>
-            </div>
+      <div className="distancefields">
+        <div className="field">
+          <div className="control has-icons-left">
+            <input
+              type="text"
+              name="distance"
+              className="input is-primary"
+              placeholder="Distance"
+              onChange={handleChange}
+              value={info.distance}
+            />
             <span className="icon is-small is-left">
-              <i className='fas fa-running'></i>
+              <i className="fas fa-pencil-ruler"></i>
             </span>
           </div>
         </div>
-      </div>
 
-      <div className="field">
+        <div className="field">
+          <div className="control">
+            <div className='control has-icons-left'>
+              <div className='select is-primary'>
+                <select
+                  onChange={handleChange}
+                  name='units'>
+                  <option value='' selected={run ? '' : 'selected'} disabled="disabled">Select units</option>
+                  <option value='KM' selected={info.runtype === 'KM' ? 'selected' : ''}>kilometres</option>
+                  <option value='MI' selected={info.runtype === 'MI' ? 'selected' : ''}>miles</option>
+                </select>
+              </div>
+              <span className="icon is-small is-left">
+                <i className='fas fa-running'></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+
+      {/* <div className="field">
         <div className="control has-icons-left">
           <input
             type="text"
@@ -131,6 +149,47 @@ const RunForm = ( { date, toggleModal, run }) => {
           <span className="icon is-small is-left">
             <i className="fas fa-pencil-ruler"></i>
           </span>
+        </div>
+      </div> */}
+
+      <div className="durationfields">
+        <div className="field">
+          <div className="control">
+            <input
+              type="text"
+              name="hours"
+              className="input is-primary"
+              placeholder="hh"
+              onChange={handleChange}
+              value={duration.hours}
+            />
+          </div>
+        </div>
+
+        <div className="field">
+          <div className="control">
+            <input
+              type="text"
+              name="minutes"
+              className="input is-primary"
+              placeholder="mm"
+              onChange={handleChange}
+              value={duration.minutes}
+            />
+          </div>
+        </div>
+
+        <div className="field">
+          <div className="control">
+            <input
+              type="text"
+              name="seconds"
+              className="input is-primary"
+              placeholder="ss"
+              onChange={handleChange}
+              value={duration.seconds}
+            />
+          </div>
         </div>
       </div>
 

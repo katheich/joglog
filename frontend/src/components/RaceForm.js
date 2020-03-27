@@ -58,11 +58,7 @@ const RaceForm = ( { date, toggleModal, race }) => {
     setErrors(newErrors)
     console.log(info)
   }
-
-  function handleCheck(e) {
-    setInfo({ ...info, [e.target.id]: !info[e.target.id] })
-  }
-
+  
   const confirm = () => {
     toggleModal()
   }

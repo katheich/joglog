@@ -15,4 +15,13 @@ function formatTime(decTime, format) {
   }
 }
 
+function deformatTime(hh, mm, ss) {
+  hh = parseInt(hh)
+  mm = parseInt(mm)
+  ss = parseInt(ss)
+
+  return (hh * 60) + mm + (ss / 60)
+}
+
 exports.formatTime = formatTime
+exports.deformatTime = deformatTime
