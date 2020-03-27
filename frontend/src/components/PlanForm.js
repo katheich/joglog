@@ -32,14 +32,14 @@ const DELETE_MUTATION = gql`
   }
 `
 
-const PlanForm = ( { date, toggleModal, plan }) => {
+const PlanForm = ( { date, modalDate, toggleModal, plan }) => {
 
   const initialInfo = {
     description: '',
     runtype: '',
     completed: false,
     skipped: false,
-    date: moment(date).format('YYYY-MM-DD')
+    date: moment(modalDate).format('YYYY-MM-DD')
   }
   
   const initialErrors = ''
@@ -80,6 +80,13 @@ const PlanForm = ( { date, toggleModal, plan }) => {
       setInfo(oldPlan)
     }
   }, [])
+
+  useEffect(() => {
+    if (date && date !== modalDate) {
+      setInfo({ ...info, date: moment(date).format('YYYY-MM-DD') })
+    }
+  }, [date])
+
 
   return <div className="has-text-centered">
     {console.log('errors', errors)}

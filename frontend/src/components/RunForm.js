@@ -30,7 +30,7 @@ const DELETE_MUTATION = gql`
   }
 `
 
-const RunForm = ( { date, toggleModal, run }) => {
+const RunForm = ( { date, modalDate, toggleModal, run }) => {
 
   const initialInfo = {
     distance: '',
@@ -39,7 +39,7 @@ const RunForm = ( { date, toggleModal, run }) => {
     avgHr: '',
     notes: '',
     units: '',
-    date: moment(date).format('YYYY-MM-DD')
+    date: moment(modalDate).format('YYYY-MM-DD')
   }
   
   const initialErrors = ''
@@ -91,6 +91,13 @@ const RunForm = ( { date, toggleModal, run }) => {
       setInfo(oldRun)
     }
   }, [])
+
+
+  useEffect(() => {
+    if (date && date !== modalDate) {
+      setInfo({ ...info, date: moment(date).format('YYYY-MM-DD') })
+    }
+  }, [date])
 
   return <div className="has-text-centered">
     {/* {console.log('errors', errors)} */}

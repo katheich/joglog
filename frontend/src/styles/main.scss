@@ -34,13 +34,17 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
 @import "../../../node_modules/bulma/sass/elements/table.sass";
 @import "../../../node_modules/bulma/sass//components/tabs.sass";
 @import "../../../node_modules/bulma-extensions//bulma-checkradio/dist/css/bulma-checkradio.sass";
-@import "../../../node_modules/bulma-extensions/bulma-calendar/dist/css/bulma-calendar.min.css";
+@import "../../../node_modules/react-calendar/dist/Calendar.css";
 
 
 /********* CUSTOM STYLES ********/
 
 * {
   box-sizing: border-box;
+}
+
+span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
+  z-index: 1;
 }
 
 .title {
@@ -145,6 +149,18 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
 
   .field {
     margin: 20px 5px;
+
+  }
+
+  .modaltitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .button {
+      margin-left: 10px;
+    }
   }
 
     .checkboxes {
@@ -170,5 +186,10 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
 
   .button {
     margin: 5px;
+  }
+
+  #calendar-pop {
+    position: absolute;
+    z-index: 3;
   }
 }

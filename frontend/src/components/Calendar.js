@@ -113,7 +113,6 @@ const Calendar = (props) => {
     setModal(!modal)
   }
 
-
   return (<section className="section" id="calendar">
   
     {console.log('INFO', info)}

@@ -32,14 +32,14 @@ const DELETE_MUTATION = gql`
   }
 `
 
-const RaceForm = ( { date, toggleModal, race }) => {
+const RaceForm = ( { date, modalDate, toggleModal, race }) => {
 
   const initialInfo = {
     description: '',
     runtype: '',
     completed: false,
     skipped: false,
-    date: moment(date).format('YYYY-MM-DD')
+    date: moment(modalDate).format('YYYY-MM-DD')
   }
   
   const initialErrors = ''
@@ -73,6 +73,12 @@ const RaceForm = ( { date, toggleModal, race }) => {
       setInfo(oldRace)
     }
   }, [])
+
+  useEffect(() => {
+    if (date && date !== modalDate) {
+      setInfo({ ...info, date: moment(date).format('YYYY-MM-DD') })
+    }
+  }, [date])
 
   return <div className="has-text-centered">
     {console.log('errors', errors)}

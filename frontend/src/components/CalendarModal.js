@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
+import Calendar from 'react-calendar'
 
 import PlanForm from './PlanForm'
 import RunForm from './RunForm'
 import RaceForm from './RaceForm'
 
 const CalendarModal = ({ toggleModal, modalDate, info }) => {
+
+  const [calendar, setCalendar] = useState(false)
+  const [date, setDate] = useState('')
 
   const plan = info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === modalDate)
   const run = info.runs.find(run => moment(run.date).format('YYYYMMDD') === modalDate)
@@ -15,6 +19,7 @@ const CalendarModal = ({ toggleModal, modalDate, info }) => {
 
   useEffect(() => {
     race ? setPurpose('race') : run ? setPurpose('run') : setPurpose('plan')
+    setDate(modalDate)
   }, [])
 
   function handlePurpose(e) {
@@ -22,12 +27,35 @@ const CalendarModal = ({ toggleModal, modalDate, info }) => {
     setPurpose(e.target.dataset.id)
   }
 
+  function toggleCalendar() {
+    setCalendar(!calendar)
+  }
+
+  function handleCalendar(e) {
+    e.preventDefault()
+    toggleCalendar()
+  }
+
+  function handleDate(newDate) {
+    setDate(moment(newDate).format('YYYYMMDD'))
+    toggleCalendar()
+  }
+
   return ( <div className="modal is-active" id="calendar-modal">
     <div className="modal-background" onClick={e => toggleModal(e)}></div>
     <div className="modal-content">
 
       <div className="box">
-        <div className="subtitle">{moment(modalDate).format('DD MMMM YYYY')}</div>
+
+        <div className="modaltitle">
+          <div className="is-size-4">{moment(date).format('DD MMMM YYYY')}</div>
+          <div className="button is-outlined is-small is-primary" onClick={handleCalendar}><i className="fas fa-pencil-alt"></i></div>
+        </div>
+
+        {calendar ?  <div id="calendar-pop"><Calendar
+          onChange={handleDate}
+          value={new Date(moment(date))}
+        /></div> : ''}
 
         <div className="tabs is-centered">
           <ul>
@@ -37,9 +65,9 @@ const CalendarModal = ({ toggleModal, modalDate, info }) => {
           </ul>
         </div>
 
-        {purpose === 'plan' ? <PlanForm date={modalDate} toggleModal={toggleModal} plan ={plan} /> : <></>}
-        {purpose === 'run' ? <RunForm date={modalDate} toggleModal={toggleModal} run={run} /> : <></>}
-        {purpose === 'race' ? <RaceForm date={modalDate} toggleModal={toggleModal} race={race} /> : <></>}
+        {purpose === 'plan' ? <PlanForm date={date} modalDate={modalDate} toggleModal={toggleModal} plan ={plan} /> : <></>}
+        {purpose === 'run' ? <RunForm date={date} modalDate={modalDate} toggleModal={toggleModal} run={run} /> : <></>}
+        {purpose === 'race' ? <RaceForm date={date} modalDate={modalDate} toggleModal={toggleModal} race={race} /> : <></>}
 
 
       </div>
