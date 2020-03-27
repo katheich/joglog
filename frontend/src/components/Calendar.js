@@ -15,6 +15,7 @@ const CALENDAR_QUERY = gql`
     myPlans {
       edges {
         node {
+          id
           date
           description
           runtype

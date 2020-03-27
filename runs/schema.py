@@ -16,8 +16,6 @@ class Query(graphene.ObjectType):
     my_runs = DjangoFilterConnectionField(RunType)
     my_races = DjangoFilterConnectionField(RaceType)
 
-
-
     @login_required
     def resolve_plans(self, info):
         return Plan.objects.all()
@@ -48,20 +46,15 @@ class CreatePlan(graphene.Mutation):
     id = graphene.Int()
     runtype = graphene.String()
     date = graphene.Date()
-
     description = graphene.String()
-
     completed = graphene.Boolean()
     skipped = graphene.Boolean()
-
     user = graphene.Field(UserType)
 
     class Arguments:
         runtype = graphene.String()
         date = graphene.Date()
-
         description = graphene.String()
-
         completed = graphene.Boolean()
         skipped = graphene.Boolean()
 
@@ -80,6 +73,44 @@ class CreatePlan(graphene.Mutation):
             skipped=plan.skipped,
             user=plan.user,
         )
+
+class EditPlan(graphene.Mutation):
+    id = graphene.ID()
+    runtype = graphene.String()
+    date = graphene.Date()
+    description = graphene.String()
+    completed = graphene.Boolean()
+    skipped = graphene.Boolean()
+
+    class Arguments:
+        id = graphene.ID()
+        runtype = graphene.String()
+        date = graphene.Date()
+        description = graphene.String()
+        completed = graphene.Boolean()
+        skipped = graphene.Boolean()
+
+    @login_required
+    def mutate(self, info, id, runtype, date, description, completed, skipped):
+        plan = Plan.objects.get(pk=id)
+
+        if plan:
+            plan.runtype = runtype
+            plan.date = date
+            plan.description = description
+            plan.completed = completed
+            plan.skipped = skipped
+            plan.save()
+
+        return EditPlan(
+            id=plan.id,
+            runtype=plan.runtype,
+            date=plan.date,
+            description=plan.description,
+            completed=plan.completed,
+            skipped=plan.skipped,
+        )
+
 
 
 class CreateRun(graphene.Mutation):
@@ -151,3 +182,4 @@ class Mutation(graphene.ObjectType):
     create_plan = CreatePlan.Field()
     create_run = CreateRun.Field()
     create_race = CreateRace.Field()
+    edit_plan = EditPlan.Field()
