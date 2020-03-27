@@ -13,18 +13,16 @@ const POST_MUTATION = gql`
 `
 
 const EDIT_MUTATION = gql`
-  mutation editPlan($id: ID!, $completed: Boolean!, $description: String!, $date: Date!, $runtype: String!, $skipped: Boolean!) {
-    editPlan (id: $id, completed: $completed, description: $description, date:$date, runtype: $runtype, skipped: $skipped) {
-      id
-      description
-      date
-    }
+mutation editRun($id: ID!, $units: String!, $date: Date!, $runtype: String!, $distance: Decimal!, $duration: Decimal!, $avgHr: Int!, $notes: String!) {
+  editRun (id: $id, units: $units, date: $date, runtype: $runtype, distance: $distance, duration:$duration, avgHr:$avgHr, notes:$notes) {
+    id
   }
+}
 `
 
 const DELETE_MUTATION = gql`
-  mutation deletePlan($id: ID!) {
-    deletePlan (id: $id) {
+  mutation deleteRun($id: ID!) {
+    deleteRun (id: $id) {
       ok
     }
   }
@@ -72,7 +70,8 @@ const RunForm = ( { date, toggleModal, run }) => {
         duration: run.duration,
         avgHr: run.avgHr,
         notes: run.notes,
-        units: run.units
+        units: run.units,
+        date: run.date
       }
       setInfo(oldRun)
     }
@@ -194,14 +193,14 @@ const RunForm = ( { date, toggleModal, run }) => {
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </>}  
-      {/* {plan ? <><Mutation mutation={EDIT_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
-        {editMutation => <button onClick={editMutation} className="button is-primary is-outlined">Edit Plan</button>}
+      {run ? <><Mutation mutation={EDIT_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+        {editMutation => <button onClick={editMutation} className="button is-primary is-outlined">Edit Run</button>}
       </Mutation>
       <Mutation mutation={DELETE_MUTATION} variables={{ id: info.id }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
-        {deleteMutation => <button onClick={deleteMutation} className="button is-danger is-outlined">Delete Plan</button>}
+        {deleteMutation => <button onClick={deleteMutation} className="button is-danger is-outlined">Delete Run</button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
-      </> : <></>}      */}
+      </> : <></>}     
 
     </form>
   </div>

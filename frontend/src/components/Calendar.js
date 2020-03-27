@@ -27,6 +27,7 @@ const CALENDAR_QUERY = gql`
     myRuns {
       edges {
         node {
+          id
           date
           distance
           duration
