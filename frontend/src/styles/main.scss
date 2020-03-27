@@ -144,7 +144,7 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
     border: 0.5px solid lightgray;
 
   .field {
-    margin: 20px 0;
+    margin: 20px 5px;
   }
 
     .checkboxes {
@@ -156,10 +156,14 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
     .durationfields, .distancefields {
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      justify-content: space-between;
 
       .field {
-        margin-right: 10px;
+        flex-grow: 1;
+
+        .select {
+          margin-right: 0;
+        }
       }
     }
   }

@@ -110,7 +110,7 @@ const RunForm = ( { date, toggleModal, run }) => {
               value={info.distance}
             />
             <span className="icon is-small is-left">
-              <i className="fas fa-pencil-ruler"></i>
+              <i className="fas fa-route"></i>
             </span>
           </div>
         </div>
@@ -122,39 +122,22 @@ const RunForm = ( { date, toggleModal, run }) => {
                 <select
                   onChange={handleChange}
                   name='units'>
-                  <option value='' selected={run ? '' : 'selected'} disabled="disabled">Select units</option>
-                  <option value='KM' selected={info.runtype === 'KM' ? 'selected' : ''}>kilometres</option>
-                  <option value='MI' selected={info.runtype === 'MI' ? 'selected' : ''}>miles</option>
+                  <option value='KM' selected={!run || info.runtype === 'KM' ? 'selected' : ''}>km</option>
+                  <option value='MI' selected={info.runtype === 'MI' ? 'selected' : ''}>mi</option>
                 </select>
               </div>
               <span className="icon is-small is-left">
-                <i className='fas fa-running'></i>
+                <i className='fas fa-ruler-combined'></i>
               </span>
             </div>
           </div>
         </div>
-      </div>
-     
 
-      {/* <div className="field">
-        <div className="control has-icons-left">
-          <input
-            type="text"
-            name="duration"
-            className="input is-primary"
-            placeholder="Duration"
-            onChange={handleChange}
-            value={info.duration}
-          />
-          <span className="icon is-small is-left">
-            <i className="fas fa-pencil-ruler"></i>
-          </span>
-        </div>
-      </div> */}
+      </div>
 
       <div className="durationfields">
         <div className="field">
-          <div className="control">
+          <div className="control has-icons-left">
             <input
               type="text"
               name="hours"
@@ -163,11 +146,15 @@ const RunForm = ( { date, toggleModal, run }) => {
               onChange={handleChange}
               value={duration.hours}
             />
+            <span className="icon is-small is-left">
+              <i className='fas fa-hourglass-start'></i>
+            </span>
           </div>
+    
         </div>
 
         <div className="field">
-          <div className="control">
+          <div className="control has-icons-left">
             <input
               type="text"
               name="minutes"
@@ -176,11 +163,14 @@ const RunForm = ( { date, toggleModal, run }) => {
               onChange={handleChange}
               value={duration.minutes}
             />
+            <span className="icon is-small is-left">
+              <i className='fas fa-hourglass-half'></i>
+            </span>
           </div>
         </div>
 
         <div className="field">
-          <div className="control">
+          <div className="control has-icons-left">
             <input
               type="text"
               name="seconds"
@@ -189,6 +179,9 @@ const RunForm = ( { date, toggleModal, run }) => {
               onChange={handleChange}
               value={duration.seconds}
             />
+            <span className="icon is-small is-left">
+              <i className='fas fa-hourglass-end'></i>
+            </span>
           </div>
         </div>
       </div>
@@ -226,7 +219,7 @@ const RunForm = ( { date, toggleModal, run }) => {
             value={info.avgHr}
           />
           <span className="icon is-small is-left">
-            <i className="fas fa-pencil-ruler"></i>
+            <i className="fas fa-heartbeat"></i>
           </span>
         </div>
       </div>
@@ -242,7 +235,7 @@ const RunForm = ( { date, toggleModal, run }) => {
             value={info.notes}
           />
           <span className="icon is-small is-left">
-            <i className="fas fa-pencil-ruler"></i>
+            <i className="fas fa-clipboard"></i>
           </span>
         </div>
       </div>

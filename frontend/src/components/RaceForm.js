@@ -58,7 +58,7 @@ const RaceForm = ( { date, toggleModal, race }) => {
     setErrors(newErrors)
     console.log(info)
   }
-  
+
   const confirm = () => {
     toggleModal()
   }
@@ -90,7 +90,7 @@ const RaceForm = ( { date, toggleModal, race }) => {
             value={info.name}
           />
           <span className="icon is-small is-left">
-            <i className="fas fa-pencil-ruler"></i>
+            <i className="fas fa-trophy"></i>
           </span>
         </div>
       </div>
