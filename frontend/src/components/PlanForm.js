@@ -64,7 +64,7 @@ const PlanForm = ( { date, toggleModal, plan }) => {
   }
 
   const confirm = () => {
-    console.log('SUCCESSFULLY SENT PLAN')
+    toggleModal()
   }
 
   useEffect(() => {

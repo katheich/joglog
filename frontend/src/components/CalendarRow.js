@@ -3,7 +3,7 @@ import moment from 'moment'
 
 import { formatTime } from '../lib/formatting'
 
-const CalendarRow = ({ day, info, toggleModal }) => {
+const CalendarRow = ({ day, info, handleModal }) => {
 
   const date = moment(day).format('YYYYMMDD')
 
@@ -14,7 +14,7 @@ const CalendarRow = ({ day, info, toggleModal }) => {
   return (<tr 
     id={date} 
     className={date === moment().format('YYYYMMDD') ? 'is-today' : race ? 'is-race' : ''} 
-    onClick={e => toggleModal(e)}
+    onClick={e => handleModal(e)}
     data-id={date}
   >
     <th data-id={date}>{moment(day).format('dddd, DD MMMM YYYY')}</th>

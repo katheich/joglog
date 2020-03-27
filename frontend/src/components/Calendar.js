@@ -101,9 +101,13 @@ const Calendar = (props) => {
     }
   }, [data])
 
-  function toggleModal(e) {
+  function handleModal(e) {
     e.preventDefault()
     setModalDate(e.target.dataset.id)
+    toggleModal()
+  }
+
+  function toggleModal() {
     setModal(!modal)
   }
 
@@ -152,7 +156,7 @@ const Calendar = (props) => {
           </thead>
           <tbody>
             {info.plans && info.runs && info.races && dates.map((day, i) => {
-              return <CalendarRow key={i} day={day} info={info} toggleModal={toggleModal} />
+              return <CalendarRow key={i} day={day} info={info} handleModal={handleModal} />
             })}
             {errors && <span>{errors}</span>}
           </tbody>
