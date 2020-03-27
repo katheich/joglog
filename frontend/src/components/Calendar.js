@@ -5,7 +5,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import CalendarRow from './CalendarRow'
-
+import CalendarModal from './CalendarModal'
 
 const CALENDAR_QUERY = gql`
   { 
@@ -47,12 +47,14 @@ const CALENDAR_QUERY = gql`
 `
 
 
-const Calendar = () => {
+const Calendar = (props) => {
 
   const [dates, setDates] = useState([])
   const [info, setInfo] = useState([])
   const [errors, setErrors] = useState([])
   const [data, setData] = useState([])
+  const [modal, setModal] = useState(false)
+  const [modalDate, setModalDate] = useState('')
 
   function lastMonth() {
 
@@ -95,6 +97,12 @@ const Calendar = () => {
       setInfo(cleanUserData(data))
     }
   }, [data])
+
+  function toggleModal(e) {
+    e.preventDefault()
+    setModalDate(e.target.dataset.id)
+    setModal(!modal)
+  }
 
 
   return (<section className="section" id="calendar">
@@ -141,13 +149,15 @@ const Calendar = () => {
           </thead>
           <tbody>
             {info.plans && info.runs && info.races && dates.map((day, i) => {
-              return <CalendarRow key={i} day={day} info={info} />
+              return <CalendarRow key={i} day={day} info={info} toggleModal={toggleModal} />
             })}
             {errors && <span>{errors}</span>}
           </tbody>
         </table>
       </div>
     </div>
+
+    {modal ? <CalendarModal props={props} toggleModal={toggleModal} modalDate={modalDate} /> : <></>}
   </section>
   )
 }
