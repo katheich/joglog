@@ -19,6 +19,8 @@ const CALENDAR_QUERY = gql`
           date
           description
           runtype
+          completed
+          skipped
         }
       }
     }

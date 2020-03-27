@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 
 import { Mutation } from 'react-apollo'
@@ -14,7 +14,25 @@ const POST_MUTATION = gql`
   }
 `
 
-const PlanForm = ( { date, toggleModal }) => {
+const EDIT_MUTATION = gql`
+  mutation editPlan($id: ID!, $completed: Boolean!, $description: String!, $date: Date!, $runtype: String!, $skipped: Boolean!) {
+    editPlan (id: $id, completed: $completed, description: $description, date:$date, runtype: $runtype, skipped: $skipped) {
+      id
+      description
+      date
+    }
+  }
+`
+
+const DELETE_MUTATION = gql`
+  mutation deletePlan($id: ID!) {
+    deletePlan (id: $id) {
+      ok
+    }
+  }
+`
+
+const PlanForm = ( { date, toggleModal, plan }) => {
 
   const initialInfo = {
     description: '',
@@ -42,20 +60,31 @@ const PlanForm = ( { date, toggleModal }) => {
   }
 
   function handleCheck(e) {
-    console.log('checked?', info[e.target.id])
-    console.log('id?', e.target.id)
-
     setInfo({ ...info, [e.target.id]: !info[e.target.id] })
-
   }
 
   const confirm = () => {
     console.log('SUCCESSFULLY SENT PLAN')
   }
 
+  useEffect(() => {
+    if (plan) {
+      const oldPlan = { 
+        id: parseInt(plan.id),  
+        completed: plan.completed, 
+        description: plan.description, 
+        date: plan.date, 
+        runtype: plan.runtype, 
+        skipped: plan.skipped
+      }
+      setInfo(oldPlan)
+    }
+  }, [])
+
   return <div className="has-text-centered">
-    {console.log(errors)}
-    {console.log(info)}
+    {console.log('errors', errors)}
+    {console.log('editing', info)}
+    {console.log('previous data', plan)}
     <form className="form form-home" onSubmit={handleSubmit}>
       <div className="field">
         <div className="control has-icons-left">
@@ -65,6 +94,7 @@ const PlanForm = ( { date, toggleModal }) => {
             className="input is-primary"
             placeholder="Description"
             onChange={handleChange}
+            value={info.description}
           />
           <span className="icon is-small is-left">
             <i className="fas fa-pencil-ruler"></i>
@@ -79,12 +109,12 @@ const PlanForm = ( { date, toggleModal }) => {
               <select
                 onChange={handleChange}
                 name='runtype'>
-                <option value='' selected="selected" disabled="disabled">Select a run type</option>
-                <option value='EASY'>Easy run</option>
-                <option value='ENDURANCE'>Endurance run</option>
-                <option value='INTERVALS'>Intervals</option>
-                <option value='TEMPO'>Tempo run</option>
-                <option value='UNCATEGORISED'>Uncategorised run</option>
+                <option value='' selected={plan ? '' : 'selected'} disabled="disabled">Select a run type</option>
+                <option value='EASY' selected={info.runtype === 'EASY' ? 'selected' : ''}>Easy run</option>
+                <option value='ENDURANCE' selected={info.runtype === 'ENDURANCE' ? 'selected' : ''}>Endurance run</option>
+                <option value='INTERVALS' selected={info.runtype === 'INTERVALS' ? 'selected' : ''}>Intervals</option>
+                <option value='TEMPO' selected={info.runtype === 'TEMPO' ? 'selected' : ''}>Tempo run</option>
+                <option value='UNCATEGORISED' selected={info.runtype === 'UNCATEGORISED' ? 'selected' : ''}>Uncategorised run</option>
               </select>
             </div>
             <span className="icon is-small is-left">
@@ -105,13 +135,20 @@ const PlanForm = ( { date, toggleModal }) => {
           <label htmlFor="skipped">Skipped</label>
         </div>
       </div>
-
-      
-      
-      <Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
-        {postMutation => <button onClick={postMutation} className="button is-primary is-outlined">Submit Plan</button>}
+      {plan ? <></> : <><Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+        {postMutation => <button onClick={postMutation} className="button is-primary is-outlined">Create Plan</button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
+      </>}  
+      {plan ? <><Mutation mutation={EDIT_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+        {editMutation => <button onClick={editMutation} className="button is-primary is-outlined">Edit Plan</button>}
+      </Mutation>
+      <Mutation mutation={DELETE_MUTATION} variables={{ id: info.id }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+        {deleteMutation => <button onClick={deleteMutation} className="button is-danger is-outlined">Delete Plan</button>}
+      </Mutation>
+      {errors && <small className="help is-danger">{errors}</small>}
+      </> : <></>}     
+
     </form>
   </div>
 
