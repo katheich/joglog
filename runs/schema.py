@@ -128,7 +128,6 @@ class DeletePlan(graphene.Mutation):
         if not user == plan.user:
             raise Exception('Not authorised to delete this.')
 
-        plan = Plan.objects.get(pk=id)
         plan.delete()
         ok = True
 
@@ -229,6 +228,25 @@ class EditRun(graphene.Mutation):
             user=run.user
         )
 
+class DeleteRun(graphene.Mutation):
+    ok = graphene.Boolean()
+
+    class Arguments:
+        id = graphene.ID()
+
+    @login_required
+    def mutate(self, info, id):
+        run = Run.objects.get(pk=id)
+        user = info.context.user
+
+        if not user == run.user:
+            raise Exception('Not authorised to delete this.')
+
+        run.delete()
+        ok = True
+
+        return ok
+
 class CreateRace(graphene.Mutation):
     id = graphene.Int()
     date = graphene.Date()
@@ -259,4 +277,5 @@ class Mutation(graphene.ObjectType):
     delete_plan = DeletePlan.Field()
     create_run = CreateRun.Field()
     edit_run = EditRun.Field()
+    delete_run = DeleteRun.Field()
     create_race = CreateRace.Field()
