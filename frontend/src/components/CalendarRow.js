@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 
-import formatTime from '../lib/formatting'
+import { formatTime } from '../lib/formatting'
 
 const CalendarRow = ({ day, info }) => {
 

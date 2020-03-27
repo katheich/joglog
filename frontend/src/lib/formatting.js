@@ -15,4 +15,4 @@ function formatTime(decTime, format) {
   }
 }
 
-module.exports = formatTime
+exports.formatTime = formatTime
