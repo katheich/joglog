@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 
 import PlanForm from './PlanForm'
@@ -11,6 +11,10 @@ const CalendarModal = ({ props, toggleModal, modalDate, info }) => {
   const race = info.races.find(race => moment(race.date).format('YYYYMMDD') === modalDate)
 
   const [purpose, setPurpose] = useState('plan')
+
+  useEffect(() => {
+    race ? setPurpose('race') : run ? setPurpose('run') : setPurpose('plan')
+  }, [])
 
   function handlePurpose(e) {
     e.preventDefault()
