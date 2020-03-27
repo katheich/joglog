@@ -3,6 +3,7 @@ import moment from 'moment'
 
 import PlanForm from './PlanForm'
 import RunForm from './RunForm'
+import RaceForm from './RaceForm'
 
 const CalendarModal = ({ toggleModal, modalDate, info }) => {
 
@@ -38,6 +39,8 @@ const CalendarModal = ({ toggleModal, modalDate, info }) => {
 
         {purpose === 'plan' ? <PlanForm date={modalDate} toggleModal={toggleModal} plan ={plan} /> : <></>}
         {purpose === 'run' ? <RunForm date={modalDate} toggleModal={toggleModal} run={run} /> : <></>}
+        {purpose === 'race' ? <RaceForm date={modalDate} toggleModal={toggleModal} race={race} /> : <></>}
+
 
       </div>
     </div>

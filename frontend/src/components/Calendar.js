@@ -42,6 +42,7 @@ const CALENDAR_QUERY = gql`
     myRaces {
       edges {
         node {
+          id
           name
           date
         }
