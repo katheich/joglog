@@ -192,5 +192,16 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
   #calendar-pop {
     position: absolute;
     z-index: 3;
+
+    .react-calendar__navigation {
+      .react-calendar__navigation__arrow, .react-calendar__navigation__label {
+        font-size: 1rem !important;
+
+      }
+    }
+
+    .react-calendar__tile--active {
+      background-color: rgba($primary, 0.8)
+    }
   }
 }
