@@ -17,7 +17,7 @@ const CalendarRow = ({ day, info, toggleModal }) => {
     onClick={e => toggleModal(e)}
     data-id={date}
   >
-    <th>{moment(day).format('dddd, DD MMMM YYYY')}</th>
+    <th data-id={date}>{moment(day).format('dddd, DD MMMM YYYY')}</th>
 
     <th className="plan" data-id={date}>
       {race && race.name}
@@ -25,7 +25,7 @@ const CalendarRow = ({ day, info, toggleModal }) => {
     </th>
 
     {run ? <>
-      <th className="distance data-id={date}">{run.distance} {run.units.toLowerCase()}</th>
+      <th className="distance" data-id={date}>{run.distance} {run.units.toLowerCase()}</th>
       <th className="time" data-id={date}>{formatTime(run.duration, 'hms')}</th>
       <th className="pace" data-id={date}>{formatTime(run.pace, 'ms')} min / {run.units.toLowerCase()}</th>
       <th className="hr" data-id={date}>{run.avgHr} bpm</th>
