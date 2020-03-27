@@ -93,6 +93,11 @@ class EditPlan(graphene.Mutation):
     @login_required
     def mutate(self, info, id, runtype, date, description, completed, skipped):
         plan = Plan.objects.get(pk=id)
+        user = info.context.user
+
+        if not user == plan.user:
+            raise Exception('Not authorised to edit this.')
+
         plan.runtype = runtype
         plan.date = date
         plan.description = description
@@ -108,6 +113,7 @@ class EditPlan(graphene.Mutation):
             completed=plan.completed,
             skipped=plan.skipped,
         )
+
 
 
 
