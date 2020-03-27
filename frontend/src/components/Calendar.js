@@ -157,7 +157,7 @@ const Calendar = (props) => {
       </div>
     </div>
 
-    {modal ? <CalendarModal props={props} toggleModal={toggleModal} modalDate={modalDate} /> : <></>}
+    {modal ? <CalendarModal props={props} toggleModal={toggleModal} modalDate={modalDate} info={info} /> : <></>}
   </section>
   )
 }

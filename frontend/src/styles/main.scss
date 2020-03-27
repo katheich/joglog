@@ -15,6 +15,8 @@ $primary: $green;
 $input-focus-border-color: $primary;
 $input-focus-box-shadow-color: rgba($primary, 0.25);
 $table-row-active-background-color: rgba($primary, 0.5);
+$tabs-link-active-color: $green;
+$tabs-link-active-border-bottom-color: $green;
 
 // Update Bulma's global variables
 $family-sans-serif: 'Open Sans Condensed', sans-serif;
@@ -30,7 +32,8 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
 @import "../../../node_modules/bulma/sass/layout/hero.sass";
 @import "../../../node_modules/bulma/sass/layout/section.sass";
 @import "../../../node_modules/bulma/sass/elements/table.sass";
-
+@import "../../../node_modules/bulma/sass//components/tabs.sass";
+@import "../../../node_modules/bulma-extensions//bulma-checkradio/dist/css/bulma-checkradio.sass";
 
 
 /********* CUSTOM STYLES ********/
@@ -138,5 +141,15 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
 #calendar-modal {
   .box {
     border: 0.5px solid lightgray;
+
+  .field {
+    margin: 20px 0;
+  }
+
+    .checkboxes {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
   }
 }
