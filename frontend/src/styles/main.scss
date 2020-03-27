@@ -125,6 +125,16 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
 
 // CALENDAR ***************************************** //
 
+#calendar {
+  .is-race{
+    background-color: rgba($warning, 0.5);
+  }
+
+  .is-today {
+    background-color: rgba($primary, 0.5);
+  }
+}
+
 #calendar-modal {
   .box {
     border: 0.5px solid lightgray;

@@ -13,7 +13,7 @@ const CalendarRow = ({ day, info, toggleModal }) => {
   
   return (<tr 
     id={date} 
-    className={date === moment().format('YYYYMMDD') ? 'is-selected' : ''} 
+    className={date === moment().format('YYYYMMDD') ? 'is-today' : race ? 'is-race' : ''} 
     onClick={e => toggleModal(e)}
     data-id={date}
   >

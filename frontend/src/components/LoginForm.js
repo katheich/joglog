@@ -79,7 +79,7 @@ const LoginForm = ({ props }) => {
       <Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data) } onError={err => setErrors(err.message)}>
         {postMutation => <button onClick={postMutation} className="button is-primary is-outlined">Login</button>}
       </Mutation>
-      {errors && <small className="help is-warning">{errors}</small>}
+      {errors && <small className="help is-danger">{errors}</small>}
     </form>
   </div>
 
