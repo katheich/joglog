@@ -136,7 +136,7 @@ class DeletePlan(graphene.Mutation):
 
 
 class CreateRun(graphene.Mutation):
-    id = graphene.Int()
+    id = graphene.ID()
     runtype = graphene.String()
     date = graphene.Date()
     units = graphene.String()
@@ -176,6 +176,59 @@ class CreateRun(graphene.Mutation):
             user=run.user
         )
 
+class EditRun(graphene.Mutation):
+    id = graphene.ID()
+    runtype = graphene.String()
+    date = graphene.Date()
+    units = graphene.String()
+    distance = graphene.Decimal()
+    pace = graphene.Decimal()
+    duration = graphene.Decimal()
+    avg_HR = graphene.Int()
+    notes = graphene.String()
+    user = graphene.Field(UserType)
+
+    class Arguments:
+        id = graphene.ID()
+        runtype = graphene.String()
+        date = graphene.Date()
+        units = graphene.String()
+        distance = graphene.Decimal()
+        duration = graphene.Decimal()
+        avg_HR = graphene.Int()
+        notes = graphene.String()
+
+    @login_required
+    def mutate(self, info, id, runtype, date, units, distance, duration, avg_HR, notes):
+        run = Run.objects.get(pk=id)
+        user = info.context.user
+
+        if not user == run.user:
+            raise Exception('Not authorised to edit this.')
+
+        run.runtype = runtype
+        run.date = date
+        run.units = units
+        run.distance = distance
+        run.duration = duration
+        run.pace = duration / distance
+        run.avg_HR = avg_HR
+        run.notes = notes
+        run.save()
+
+        return EditRun(
+            id=run.id,
+            runtype=run.runtype,
+            date=run.date,
+            units=run.units,
+            distance=run.distance,
+            pace=run.pace,
+            duration=run.duration,
+            avg_HR=run.avg_HR,
+            notes=run.notes,
+            user=run.user
+        )
+
 class CreateRace(graphene.Mutation):
     id = graphene.Int()
     date = graphene.Date()
@@ -202,7 +255,8 @@ class CreateRace(graphene.Mutation):
 
 class Mutation(graphene.ObjectType):
     create_plan = CreatePlan.Field()
-    create_run = CreateRun.Field()
-    create_race = CreateRace.Field()
     edit_plan = EditPlan.Field()
     delete_plan = DeletePlan.Field()
+    create_run = CreateRun.Field()
+    edit_run = EditRun.Field()
+    create_race = CreateRace.Field()

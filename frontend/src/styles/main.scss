@@ -34,6 +34,7 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
 @import "../../../node_modules/bulma/sass/elements/table.sass";
 @import "../../../node_modules/bulma/sass//components/tabs.sass";
 @import "../../../node_modules/bulma-extensions//bulma-checkradio/dist/css/bulma-checkradio.sass";
+@import "../../../node_modules/bulma-extensions/bulma-calendar/dist/css/bulma-calendar.min.css";
 
 
 /********* CUSTOM STYLES ********/
@@ -151,5 +152,9 @@ $family-sans-serif: 'Open Sans Condensed', sans-serif;
       flex-direction: row;
       justify-content: space-around;
     }
+  }
+
+  .button {
+    margin: 5px;
   }
 }
