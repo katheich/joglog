@@ -93,14 +93,12 @@ class EditPlan(graphene.Mutation):
     @login_required
     def mutate(self, info, id, runtype, date, description, completed, skipped):
         plan = Plan.objects.get(pk=id)
-
-        if plan:
-            plan.runtype = runtype
-            plan.date = date
-            plan.description = description
-            plan.completed = completed
-            plan.skipped = skipped
-            plan.save()
+        plan.runtype = runtype
+        plan.date = date
+        plan.description = description
+        plan.completed = completed
+        plan.skipped = skipped
+        plan.save()
 
         return EditPlan(
             id=plan.id,
