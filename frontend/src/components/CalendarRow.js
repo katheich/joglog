@@ -20,8 +20,9 @@ const CalendarRow = ({ day, info, handleModal }) => {
     <th data-id={date}>{moment(day).format('dddd, DD MMMM YYYY')}</th>
 
     <th className="plan" data-id={date}>
-      {race && race.name}
-      {plan && plan.description + ', ' + plan.runtype}
+      {race && !plan && race.name}
+      {plan && !race && plan.description + ', ' + plan.runtype}
+      {plan && race && race.name + ' / ' + plan.description + ', ' + plan.runtype}
     </th>
 
     {run ? <>

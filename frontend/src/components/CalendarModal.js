@@ -36,7 +36,6 @@ const CalendarModal = ({ props, toggleModal, modalDate, info }) => {
           </ul>
         </div>
 
-
         {purpose === 'plan' ? <PlanForm date={modalDate} toggleModal={toggleModal} plan ={plan} /> : <></>}
 
       </div>
