@@ -270,6 +270,36 @@ class CreateRace(graphene.Mutation):
             user=race.user
         )
 
+class EditRace(graphene.Mutation):
+    id = graphene.ID()
+    date = graphene.Date()
+    name = graphene.String()
+    user = graphene.Field(UserType)
+
+    class Arguments:
+        id = graphene.ID()
+        date = graphene.Date()
+        name = graphene.String()
+
+    @login_required
+    def mutate(self, info, id, date, name):
+        race = Race.objects.get(pk=id)
+        user = info.context.user
+
+        if not user == race.user:
+            raise Exception('Not authorised to edit this.')
+
+        race.date = date
+        race.name = name
+        race.save()
+
+        return EditRace(
+            id=race.id,
+            name=race.name,
+            date=race.date,
+            user=race.user
+        )
+
 
 class Mutation(graphene.ObjectType):
     create_plan = CreatePlan.Field()
@@ -279,3 +309,4 @@ class Mutation(graphene.ObjectType):
     edit_run = EditRun.Field()
     delete_run = DeleteRun.Field()
     create_race = CreateRace.Field()
+    edit_race = EditRace.Field()
