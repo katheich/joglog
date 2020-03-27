@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 
 import PlanForm from './PlanForm'
+import RunForm from './RunForm'
 
-
-const CalendarModal = ({ props, toggleModal, modalDate, info }) => {
+const CalendarModal = ({ toggleModal, modalDate, info }) => {
 
   const plan = info.plans.find(plan => moment(plan.date).format('YYYYMMDD') === modalDate)
   const run = info.runs.find(run => moment(run.date).format('YYYYMMDD') === modalDate)
@@ -37,6 +37,7 @@ const CalendarModal = ({ props, toggleModal, modalDate, info }) => {
         </div>
 
         {purpose === 'plan' ? <PlanForm date={modalDate} toggleModal={toggleModal} plan ={plan} /> : <></>}
+        {purpose === 'run' ? <RunForm date={modalDate} toggleModal={toggleModal} run={run} /> : <></>}
 
       </div>
     </div>
