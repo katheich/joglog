@@ -146,6 +146,7 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
 #calendar-modal {
   .box {
     border: 0.5px solid lightgray;
+    min-height: 50vh;
 
   .field {
     margin: 20px 5px;
