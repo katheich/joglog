@@ -57,18 +57,23 @@ const CalendarModal = ({ toggleModal, modalDate, info }) => {
           value={new Date(moment(date))}
         /></div> : ''}
 
-        <div className="tabs is-centered">
+        <div className="tabs is-medium is-centered">
           <ul>
-            <li className={purpose === 'plan' ? 'is-medium is-active' : 'is-medium'} data-id="plan" onClick={e => handlePurpose(e)}><a data-id="plan">Plan</a></li>
-            <li className={purpose === 'run' ? 'is-medium is-active' : 'is-medium'} data-id="run" onClick={e => handlePurpose(e)}><a data-id="run">Run</a></li>
-            <li className={purpose === 'race' ? 'is-medium is-active' : 'is-medium'} data-id="race" onClick={e => handlePurpose(e)}><a data-id="race">Race</a></li>
+            <li className={purpose === 'plan' ? 'is-active' : ''} data-id="plan" onClick={e => handlePurpose(e)}>
+              <a data-id="plan">Plan</a>
+            </li>
+            <li className={purpose === 'run' ? 'is-active' : ''} data-id="run" onClick={e => handlePurpose(e)}>
+              <a data-id="run">Run</a>
+            </li>
+            <li className={purpose === 'race' ? 'is-active' : ''} data-id="race" onClick={e => handlePurpose(e)}>
+              <a data-id="race">Race</a>
+            </li>
           </ul>
         </div>
 
         {purpose === 'plan' ? <PlanForm date={date} modalDate={modalDate} toggleModal={toggleModal} plan ={plan} /> : <></>}
         {purpose === 'run' ? <RunForm date={date} modalDate={modalDate} toggleModal={toggleModal} run={run} /> : <></>}
         {purpose === 'race' ? <RaceForm date={date} modalDate={modalDate} toggleModal={toggleModal} race={race} /> : <></>}
-
 
       </div>
     </div>

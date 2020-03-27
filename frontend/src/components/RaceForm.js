@@ -91,7 +91,7 @@ const RaceForm = ( { date, modalDate, toggleModal, race }) => {
             type="text"
             name="name"
             className="input is-primary"
-            placeholder="Name"
+            placeholder="Race Name"
             onChange={handleChange}
             value={info.name}
           />
@@ -102,15 +102,15 @@ const RaceForm = ( { date, modalDate, toggleModal, race }) => {
       </div>
 
       {race ? <></> : <><Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
-        {postMutation => <button onClick={postMutation} className="button is-primary is-outlined">Create Race</button>}
+        {postMutation => <button onClick={postMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </>}  
       {race ? <><Mutation mutation={EDIT_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
-        {editMutation => <button onClick={editMutation} className="button is-primary is-outlined">Edit Race</button>}
+        {editMutation => <button onClick={editMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
       </Mutation>
       <Mutation mutation={DELETE_MUTATION} variables={{ id: info.id }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
-        {deleteMutation => <button onClick={deleteMutation} className="button is-danger is-outlined">Delete Race</button>}
+        {deleteMutation => <button onClick={deleteMutation} className="button is-danger"><i className="fas fa-trash-alt"></i></button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </> : <></>}     
