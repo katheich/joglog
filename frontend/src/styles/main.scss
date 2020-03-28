@@ -225,12 +225,14 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
     }
 
     .plan {
-      .completed {
-        color: green;
+       .skipped {
+        text-decoration: line-through;
+        opacity: 0.4;
       }
 
-      .skipped {
-        color: red;
+      i.fa-check {
+        color: $green;
+        opacity: 1;
       }
     }
   }

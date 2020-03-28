@@ -29,7 +29,7 @@ const CalendarRow = ({ day, info, handleModal }) => {
       </span>}
       {plan && <span className="plan">
         <i className="fas fa-pencil-ruler"></i>
-        <span className={plan.completed ? 'completed' : plan.skipped ? 'skipped' : ''}>{plan.description}</span>
+        <span className={plan.skipped ? 'skipped' : ''}>{plan.description} {plan.completed ? <i className="fas fa-check is-size-7"></i> : ''}</span>
       </span>
       }
     </td>
