@@ -152,7 +152,7 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
   }
 
-  navbar.start {
+  div.start {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -173,9 +173,7 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
   .is-race{
     background-color: rgba($blue, 0.3);
     color: white;
-    .race {
-      font-weight: 800;
-    }
+    font-weight: 800;
   }
 
   .date.is-today {
