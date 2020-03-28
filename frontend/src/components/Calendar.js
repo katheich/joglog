@@ -135,7 +135,7 @@ const Calendar = (props) => {
 
       <div className="table-container">
         <table className="table is-fullwidth is-hoverable">
-          <thead>
+          {/* <thead>
             <tr>
               <th>Date</th>
               <th>Plan</th>
@@ -145,7 +145,7 @@ const Calendar = (props) => {
               <th>Avg HR</th>
               <th>Notes</th>
             </tr>
-          </thead>
+          </thead> */}
           <tbody>
             {info.plans && info.runs && info.races && dates.map((day, i) => {
               return <CalendarRow key={i} day={day} info={info} handleModal={handleModal} />
