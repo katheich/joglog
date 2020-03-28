@@ -8,10 +8,7 @@ import CalendarRow from './CalendarRow'
 import CalendarModal from './CalendarModal'
 
 const CALENDAR_QUERY = gql`
-  { 
-    me {
-      username
-    }
+  {
     myPlans {
       edges {
         node {
@@ -135,12 +132,6 @@ const Calendar = (props) => {
     </Query>
 
     <div className="container">
-
-      <div className="level">
-        <div className="level-right">
-          <div className="level-item subtitle is-size-4"> Hello, {data.me && data.me.username}!</div>
-        </div>
-      </div>
 
       <div className="table-container">
         <table className="table is-fullwidth is-hoverable">

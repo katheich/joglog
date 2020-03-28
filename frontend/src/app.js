@@ -13,6 +13,7 @@ import { setContext } from 'apollo-link-context'
 
 import { AUTH_TOKEN } from './lib/constants'
 
+import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Calendar from './components/Calendar'
 
@@ -38,6 +39,7 @@ const client = new ApolloClient({
 const App = () => {
   
   return <HashRouter>
+    <Navbar />
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/calendar" render={(props) => <Calendar props={props} client={client}/>} />
