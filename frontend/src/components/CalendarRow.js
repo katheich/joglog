@@ -33,7 +33,7 @@ const CalendarRow = ({ day, info, handleModal }) => {
       </span>
       }
     </td>
-    <td className={'title is-size-5 schedule-category' + `${plan ? ' ' + plan.runtype.toLowerCase() : ''}`}>
+    <td className={'title is-size-5 schedule-category' + `${plan ? ' ' + plan.runtype.toLowerCase() : ''}`} data-id={date}>
       <span className="info">{plan && plan.runtype}</span>
     </td>
 
@@ -58,7 +58,7 @@ const CalendarRow = ({ day, info, handleModal }) => {
         <i className="fas fa-clipboard"></i>
         <span className="info">{run.notes}</span>
       </td>
-      <td className={'title is-size-5 run-category ' + run.runtype.toLowerCase()}>
+      <td className={'title is-size-5 run-category ' + run.runtype.toLowerCase()} data-id={date}>
         {run.runtype}
       </td>
       </> 
