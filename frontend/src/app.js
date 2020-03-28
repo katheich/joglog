@@ -11,7 +11,7 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { setContext } from 'apollo-link-context'
 
-import { AUTH_TOKEN } from './lib/constants'
+import Auth from './lib/auth'
 
 import Navbar from './components/Navbar'
 import Home from './components/Home'
@@ -22,7 +22,7 @@ const httpLink = createHttpLink({
 })
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem(AUTH_TOKEN)
+  const token = Auth.getToken()
   return {
     headers: {
       ...headers,
