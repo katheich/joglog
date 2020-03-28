@@ -170,6 +170,11 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
 
 #calendar {
 
+  td.schedule {
+    max-width: 20vw;
+    word-wrap: breakword;
+  }
+
   .is-race{
     background-color: rgba($blue, 0.3);
     color: white;
