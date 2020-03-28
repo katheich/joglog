@@ -149,7 +149,11 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
   .navbar {
     background-color: rgba(white, 0.9);
     height: 15vh !important; 
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 60%);
+  }
+
+  .button {
+    margin-right: 20px;
   }
 
   div.start {

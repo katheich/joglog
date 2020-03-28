@@ -26,7 +26,7 @@ const Navbar = (props) => {
   return (<div className="" id="navbar">
     <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="start">
-        <div className="level">
+        <div className="level is-mobile">
 
         
           <div className="level-start">
