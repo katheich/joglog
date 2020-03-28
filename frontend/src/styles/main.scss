@@ -182,7 +182,7 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
   }
 
   .date.is-today {
-    background-color: rgba($primary, 0.5);
+    background-color: rgba($primary, 0.4);
   }
 
   .sa, .su {
@@ -190,7 +190,7 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
   }
 
   tr:hover {
-    background-color: rgba($primary, 0.2);
+    background-color: rgba($primary, 0.15);
   }
   
   td.easy {
