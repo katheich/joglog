@@ -68,7 +68,7 @@ const CalendarRow = ({ day, info, handleModal }) => {
       <td className="pace" data-id={date}></td>
       <td className="hr" data-id={date}></td>
       <td className="notes" data-id={date}></td>
-      <td className="run-category"></td>
+      <td className="run-category" data-id={date}></td>
       </>}
 
   </tr>)
