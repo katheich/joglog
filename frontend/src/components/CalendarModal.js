@@ -77,7 +77,6 @@ const CalendarModal = ({ toggleModal, modalDate, info }) => {
 
       </div>
     </div>
-    <button className="modal-close is-large" onClick={e => toggleModal(e)} aria-label="close"></button>
   </div>)
 
 }

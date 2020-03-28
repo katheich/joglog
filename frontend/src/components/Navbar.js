@@ -22,7 +22,7 @@ const Navbar = (props) => {
       </navbar>
       <div className="navbar-end">
         <div className="navbar-item">
-          <button className="button is-primary" onClick={handleLogout}> 
+          <button className="button is-primary is-outlined" onClick={handleLogout}> 
             <i className="fas fa-sign-out-alt"></i>
           </button>
         </div>

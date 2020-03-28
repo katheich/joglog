@@ -14,7 +14,6 @@ const HomeModal = ({ props, purpose, handleModal }) => {
         {purpose === 'register' ? <RegisterForm purpose={purpose} /> : <></>}
       </div>
     </div>
-    <button className="modal-close is-large" onClick={e => handleModal(e)} aria-label="close"></button>
   </div>)
 
 }
