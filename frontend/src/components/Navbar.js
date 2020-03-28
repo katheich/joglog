@@ -25,7 +25,7 @@ const Navbar = (props) => {
   if (!Auth.isAuthorized()) return <></>
   return (<div className="" id="navbar">
     <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-      <navbar className="start">
+      <div className="start">
         <div className="level">
 
         
@@ -58,7 +58,7 @@ const Navbar = (props) => {
             </div>
           </div>
         </div>
-      </navbar>
+      </div>
     </nav>
   </div>)
 }

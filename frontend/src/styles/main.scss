@@ -172,6 +172,7 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
 
   .is-race{
     background-color: rgba($blue, 0.3);
+    color: white;
     .race {
       font-weight: 800;
     }
@@ -216,6 +217,21 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
 
     &.notes i {
       color: $purple;
+    }
+
+    .race i {
+      color: $purple;
+      opacity: 1;
+    }
+
+    .plan {
+      .completed {
+        color: green;
+      }
+
+      .skipped {
+        color: red;
+      }
     }
   }
 

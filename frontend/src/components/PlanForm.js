@@ -36,7 +36,7 @@ const PlanForm = ( { date, modalDate, toggleModal, plan }) => {
 
   const initialInfo = {
     description: '',
-    runtype: '',
+    runtype: 'UNCATEGORISED',
     completed: false,
     skipped: false,
     date: moment(modalDate).format('YYYY-MM-DD')
@@ -116,7 +116,7 @@ const PlanForm = ( { date, modalDate, toggleModal, plan }) => {
               <select
                 onChange={handleChange}
                 name='runtype'>
-                <option value='' selected={plan ? '' : 'selected'} disabled="disabled">Select a run type</option>
+                <option value='' disabled="disabled">Select a run type</option>
                 <option value='EASY' selected={info.runtype === 'EASY' ? 'selected' : ''}>Easy run</option>
                 <option value='ENDURANCE' selected={info.runtype === 'ENDURANCE' ? 'selected' : ''}>Endurance run</option>
                 <option value='INTERVALS' selected={info.runtype === 'INTERVALS' ? 'selected' : ''}>Intervals</option>

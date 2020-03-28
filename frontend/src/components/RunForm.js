@@ -34,7 +34,7 @@ const RunForm = ( { date, modalDate, toggleModal, run }) => {
 
   const initialInfo = {
     distance: '',
-    runtype: '',
+    runtype: 'UNCATEGORISED',
     duration: '',
     avgHr: '',
     notes: '',
@@ -194,7 +194,7 @@ const RunForm = ( { date, modalDate, toggleModal, run }) => {
               <select
                 onChange={handleChange}
                 name='runtype'>
-                <option value='' selected={run ? '' : 'selected'} disabled="disabled">Select a run type</option>
+                <option value='' disabled="disabled">Select a run type</option>
                 <option value='EASY' selected={info.runtype === 'EASY' ? 'selected' : ''}>Easy run</option>
                 <option value='ENDURANCE' selected={info.runtype === 'ENDURANCE' ? 'selected' : ''}>Endurance run</option>
                 <option value='INTERVALS' selected={info.runtype === 'INTERVALS' ? 'selected' : ''}>Intervals</option>

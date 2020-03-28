@@ -22,14 +22,14 @@ const CalendarRow = ({ day, info, handleModal }) => {
     <td className="schedule" data-id={date}>
       {race && <span className="race">
         <i className="fas fa-medal"></i>
-        <span className="info">{race.name}</span>
+        {race.name}
       </span>}
       {race && plan && <span className="space">
          / 
       </span>}
       {plan && <span className="plan">
         <i className="fas fa-pencil-ruler"></i>
-        {plan.description}
+        <span className={plan.completed ? 'completed' : plan.skipped ? 'skipped' : ''}>{plan.description}</span>
       </span>
       }
     </td>
