@@ -149,46 +149,40 @@ const RunForm = ( { date, modalDate, toggleModal, run }) => {
               type="text"
               name="hours"
               className="input is-primary"
-              placeholder="hh"
+              placeholder="Total duration: hours"
               onChange={handleChange}
               value={duration.hours}
             />
             <span className="icon is-small is-left">
-              <i className='fas fa-hourglass-start'></i>
+              <i className='fas fa-stopwatch'></i>
             </span>
           </div>
     
         </div>
 
         <div className="field">
-          <div className="control has-icons-left">
+          <div className="control">
             <input
               type="text"
               name="minutes"
               className="input is-primary"
-              placeholder="mm"
+              placeholder="minutes"
               onChange={handleChange}
               value={duration.minutes}
             />
-            <span className="icon is-small is-left">
-              <i className='fas fa-hourglass-half'></i>
-            </span>
           </div>
         </div>
 
         <div className="field">
-          <div className="control has-icons-left">
+          <div className="control">
             <input
               type="text"
               name="seconds"
               className="input is-primary"
-              placeholder="ss"
+              placeholder="seconds"
               onChange={handleChange}
               value={duration.seconds}
             />
-            <span className="icon is-small is-left">
-              <i className='fas fa-hourglass-end'></i>
-            </span>
           </div>
         </div>
       </div>

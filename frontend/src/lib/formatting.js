@@ -16,6 +16,11 @@ function formatTime(decTime, format) {
 }
 
 function deformatTime(hh, mm, ss) {
+
+  if (hh === '') hh = 0
+  if (mm === '') mm = 0
+  if (ss === '') ss = 0
+
   hh = parseInt(hh)
   mm = parseInt(mm)
   ss = parseInt(ss)
