@@ -96,7 +96,7 @@ const RaceForm = ( { date, modalDate, toggleModal, race }) => {
             value={info.name}
           />
           <span className="icon is-small is-left">
-            <i className="fas fa-trophy"></i>
+            <i className="fas fa-medal"></i>
           </span>
         </div>
       </div>
