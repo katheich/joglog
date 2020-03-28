@@ -154,7 +154,7 @@ const RunForm = ( { date, modalDate, toggleModal, run }) => {
               value={duration.hours}
             />
             <span className="icon is-small is-left">
-              <i className='fas fa-stopwatch'></i>
+              <i className='fas fa-hourglass-half'></i>
             </span>
           </div>
     
