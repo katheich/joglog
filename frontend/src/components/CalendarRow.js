@@ -13,31 +13,62 @@ const CalendarRow = ({ day, info, handleModal }) => {
   
   return (<tr 
     id={date} 
-    className={date === moment().format('YYYYMMDD') ? 'is-today' : race ? 'is-race' : ''} 
+    className={'date ' + `${moment(date).format('dd').toLowerCase()}` + `${date === moment().format('YYYYMMDD') ? ' is-today' : race ? ' is-race' : ''}`} 
     onClick={e => handleModal(e)}
     data-id={date}
   >
-    <th data-id={date}>{moment(day).format('dddd, DD MMMM YYYY')}</th>
+    <td data-id={date}>{moment(day).format('dddd, DD MMMM YYYY')}</td>
 
-    <th className="plan" data-id={date}>
-      {race && !plan && race.name}
-      {plan && !race && plan.description + ', ' + plan.runtype}
-      {plan && race && race.name + ' / ' + plan.description + ', ' + plan.runtype}
-    </th>
+    <td className="schedule" data-id={date}>
+      {race && <span className="race">
+        <i className="fas fa-medal"></i>
+        <span className="info">{race.name}</span>
+      </span>}
+      {race && plan && <span className="space">
+         / 
+      </span>}
+      {plan && <span className="plan">
+        <i className="fas fa-pencil-ruler"></i>
+        {plan.description}
+      </span>
+      }
+    </td>
+    <td className={'title is-size-5 schedule-category' + `${plan ? ' ' + plan.runtype.toLowerCase() : ''}`}>
+      <span className="info">{plan && plan.runtype}</span>
+    </td>
 
     {run ? <>
-      <th className="distance" data-id={date}>{run.distance} {run.units.toLowerCase()}</th>
-      <th className="time" data-id={date}>{formatTime(run.duration, 'hms')}</th>
-      <th className="pace" data-id={date}>{formatTime(run.pace, 'ms')} min / {run.units.toLowerCase()}</th>
-      <th className="hr" data-id={date}>{run.avgHr} bpm</th>
-      <th className="notes" data-id={date}>{run.notes}</th>
+      <td className="distance" data-id={date}>
+        <i className="fas fa-route"></i>
+        <span className="info">{run.distance} {run.units.toLowerCase()}</span>
+      </td>
+      <td className="duration" data-id={date}>
+        <i className='fas fa-hourglass-half'></i>
+        <span className="info">{formatTime(run.duration, 'hms')}</span>
+      </td>
+      <td className="pace" data-id={date}>
+        <i className='fas fa-stopwatch'></i>
+        <span className="info">{formatTime(run.pace, 'ms')} min / {run.units.toLowerCase()}</span>
+      </td>
+      <td className="hr" data-id={date}>
+        <i className="fas fa-heartbeat"></i>
+        <span className="info">{run.avgHr} bpm</span>
+      </td>
+      <td className="notes" data-id={date}>
+        <i className="fas fa-clipboard"></i>
+        <span className="info">{run.notes}</span>
+      </td>
+      <td className={'title is-size-5 run-category ' + run.runtype.toLowerCase()}>
+        {run.runtype}
+      </td>
       </> 
       : <>
-      <th className="distance" data-id={date}></th>
-      <th className="time" data-id={date}></th>
-      <th className="pace" data-id={date}></th>
-      <th className="hr" data-id={date}></th>
-      <th className="notes" data-id={date}></th>
+      <td className="distance" data-id={date}></td>
+      <td className="duration" data-id={date}></td>
+      <td className="pace" data-id={date}></td>
+      <td className="hr" data-id={date}></td>
+      <td className="notes" data-id={date}></td>
+      <td className="run-category"></td>
       </>}
 
   </tr>)

@@ -8,10 +8,17 @@
 
 // Set your brand colors
 $green: rgb(73, 230, 68);
+$red: rgb(211, 1, 1);
+$blue: rgb(0, 136, 255);
+$yellow: rgb(255, 204, 0);
+$purple: rgb(53, 0, 128);
+
 
 
 // Update some of Bulma's component variables
 $primary: $green;
+$danger: $red;
+$warning: $yellow;
 $input-focus-border-color: $primary;
 $input-focus-box-shadow-color: rgba($primary, 0.25);
 $table-row-active-background-color: rgba($primary, 0.5);
@@ -162,13 +169,56 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
 // CALENDAR ***************************************** //
 
 #calendar {
+
   .is-race{
-    background-color: rgba($warning, 0.5);
+    background-color: rgba($blue, 0.3);
+    .race {
+      font-weight: 800;
+    }
   }
 
-  .is-today {
+  .date.is-today {
     background-color: rgba($primary, 0.5);
   }
+
+  .sa, .su {
+    background-color: rgba(rgb(240, 240, 240), 0.5);
+  }
+
+  tr:hover {
+    background-color: rgba($primary, 0.2);
+  }
+  
+  td.easy {
+    color: $blue !important;
+  }
+
+  td {
+    i {
+      margin-right: 5px; 
+      opacity: 0.5;
+    }
+    &.distance i {
+        color: $green;
+    }
+
+    &.duration i {
+      color: $blue;
+    }
+
+    &.pace i {
+      color: $yellow;
+    }
+
+    &.hr i {
+      color: $red;
+    }
+
+    &.notes i {
+      color: $purple;
+    }
+  }
+
 }
 
 #calendar-modal {

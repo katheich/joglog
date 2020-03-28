@@ -38,7 +38,7 @@ const RunForm = ( { date, modalDate, toggleModal, run }) => {
     duration: '',
     avgHr: '',
     notes: '',
-    units: '',
+    units: 'KM',
     date: moment(modalDate).format('YYYY-MM-DD')
   }
   
