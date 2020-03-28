@@ -235,11 +235,47 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
     }
   }
 
+  td.notes .notes-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    i {
+      margin: 3px 0 0;
+    }
+
+    .notes-info {
+      position: absolute;
+      min-width: 10vw;
+      max-width: 80vw;
+      opacity: 0;
+      word-wrap: break-word;
+      text-align: center;
+      transition: opacity 0.5s ease-in-out;
+      background-color: white;
+      border: 0.5px solid lightgray;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  
+
+    &:hover {
+
+      .notes-info {
+        opacity: 1;
+      }
+    }
+  }
+
+
+
 }
 
 #calendar-modal {
   .box {
-    border: 0.5px solid lightgray;
+    order: 0.5px solid lightgray;
     min-height: 50vh;
 
   .field {

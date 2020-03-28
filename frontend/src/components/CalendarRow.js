@@ -55,8 +55,11 @@ const CalendarRow = ({ day, info, handleModal }) => {
         <span className="info">{run.avgHr} bpm</span>
       </td>
       <td className="notes" data-id={date}>
-        <i className="fas fa-clipboard"></i>
-        <span className="info">{run.notes}</span>
+        <div className="notes-container">
+          <i className="fas fa-clipboard"></i>
+          <div className="notes-info is-size-7">{run.notes}</div>
+        </div>
+
       </td>
       <td className={'title is-size-5 run-category ' + run.runtype.toLowerCase()} data-id={date}>
         {run.runtype}
