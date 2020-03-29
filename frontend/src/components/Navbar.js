@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 
 import Auth from '../lib/auth'
 
@@ -14,17 +13,16 @@ const ME_QUERY = gql`
 
   }        
 `
-const Navbar = ({props, mobile, toggleMobileView }) => {
+const Navbar = ({ props, mobile, toggleMobileView }) => {
 
   function handleLogout(e) {
     e.preventDefault()
     Auth.logout()
-    props.history.push('/')
+    props.props.history.push('/')
   }
 
   if (!Auth.isAuthorized()) return <></>
   return (<div className="" id="navbar">
-    {console.log(mobile)}
     <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="start">
         <div className="level is-mobile">
@@ -83,4 +81,4 @@ const Navbar = ({props, mobile, toggleMobileView }) => {
   </div>)
 }
 
-export default withRouter(Navbar)
+export default Navbar

@@ -142,7 +142,7 @@ const Calendar = (props) => {
   }
 
   return (<>
-  <Navbar mobile={mobile} toggleMobileView={toggleMobileView} />
+  <Navbar props={props} mobile={mobile} toggleMobileView={toggleMobileView} />
   
   <section className="section" id="calendar">
   
@@ -166,7 +166,7 @@ const Calendar = (props) => {
     </Query>
 
     <div className="container has-text-centered">
-      <i className="arrow up" onClick={e => extendCalendar('up')}></i>
+      <i className="arrow up" onClick={() => extendCalendar('up')}></i>
       <div className="table-container">
         <table className="table is-fullwidth is-hoverable">
           <tbody>
@@ -177,7 +177,7 @@ const Calendar = (props) => {
           </tbody>
         </table>
       </div>
-      <i className="arrow down" onClick={e => extendCalendar('down')}></i>
+      <i className="arrow down" onClick={() => extendCalendar('down')}></i>
     </div>
 
 
