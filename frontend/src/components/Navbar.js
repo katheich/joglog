@@ -59,6 +59,7 @@ const Navbar = (props) => {
           </div>
         </div>
       </div>
+      <div className="shadow"></div>
     </nav>
   </div>)
 }
