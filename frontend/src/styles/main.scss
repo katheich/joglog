@@ -216,6 +216,10 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
 
 #calendar {
 
+  td {
+    height: 100%;
+  }
+
   td.schedule {
     max-width: 20vw;
     word-wrap: breakword;
@@ -320,6 +324,14 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
     }
   }
 
+  td {
+    border: none;
+  }
+
+  tr {
+    border-top: 1px solid lightgray;
+  }
+
   i.arrow {
     border: solid $green;
     border-width: 0 3px 3px 0;
@@ -339,6 +351,18 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
       -webkit-transform: rotate(45deg);
     }
   }
+
+  @media only screen and (max-width: 768px) {
+
+    .date-formatted {
+      min-width: 25;
+    }
+
+    td i {
+      display: block;
+    }
+  }
+
 
 }
 

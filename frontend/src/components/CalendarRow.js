@@ -17,7 +17,8 @@ const CalendarRow = ({ day, info, handleModal, mobile }) => {
     onClick={e => handleModal(e)}
     data-id={date}
   >
-    <td data-id={date}>{moment(day).format('dddd, DD MMMM YYYY')}</td>
+    <td data-id={date} className='dateformatted mobile-hidden'>{moment(day).format('dddd, D MMMM YYYY')}</td>
+    <td data-id={date} className='dateformatted mobile-only'>{moment(day).format('dd D MMM')}</td>
 
     <td className={'schedule'  + `${mobile === 'plans' ? '' : ' mobile-hidden'}`} data-id={date}>
       {race && <span className="race">
