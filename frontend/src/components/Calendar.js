@@ -87,10 +87,10 @@ const Calendar = (props) => {
   function extendCalendar(direction) {
     let currentDates = [...dates]
     if (direction === 'up') {
-      currentDates = currentDates.concat(addDaysAfter(currentDates[0], 10))
+      currentDates = currentDates.concat(addDaysAfter(currentDates[0], 15))
     }
     if (direction === 'down') {
-      currentDates = currentDates.concat(addDaysBefore(currentDates[currentDates.length - 1], 10))
+      currentDates = currentDates.concat(addDaysBefore(currentDates[currentDates.length - 1], 15))
     }
     currentDates.sort((a,b) => b.format('YYYYMMDD') - a.format('YYYYMMDD'))
     setDates(currentDates)
