@@ -4,6 +4,7 @@ import moment from 'moment'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
+import Navbar from './Navbar'
 import CalendarRow from './CalendarRow'
 import CalendarModal from './CalendarModal'
 
@@ -130,7 +131,10 @@ const Calendar = (props) => {
     setModal(!modal)
   }
 
-  return (<section className="section" id="calendar">
+  return (<>
+  <Navbar />
+  
+  <section className="section" id="calendar">
   
     {console.log('INFO', info)}
     {console.log('DATA', data)}
@@ -155,17 +159,6 @@ const Calendar = (props) => {
       <i className="arrow up" onClick={e => extendCalendar('up')}></i>
       <div className="table-container">
         <table className="table is-fullwidth is-hoverable">
-          {/* <thead>
-            <tr>
-              <th>Date</th>
-              <th>Plan</th>
-              <th>Distance</th>
-              <th>Time</th>
-              <th>Pace</th>
-              <th>Avg HR</th>
-              <th>Notes</th>
-            </tr>
-          </thead> */}
           <tbody>
             {info.plans && info.runs && info.races && dates.map((day, i) => {
               return <CalendarRow key={i} day={day} info={info} handleModal={handleModal} />
@@ -180,7 +173,7 @@ const Calendar = (props) => {
 
     {modal ? <CalendarModal props={props} toggleModal={toggleModal} modalDate={modalDate} info={info} /> : <></>}
   </section>
-  )
+  </>)
 }
 
 export default Calendar
