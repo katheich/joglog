@@ -61,8 +61,8 @@ const Calendar = (props) => {
   function lastMonth() {
     let days = []
     days.push(moment())
-    days = days.concat(addDaysAfter(moment(), 15))
-    days = days.concat(addDaysBefore(moment(), 15))
+    days = days.concat(addDaysAfter(moment(), 8))
+    days = days.concat(addDaysBefore(moment(), 22))
     days = days.sort((a,b) => b.format('YYYYMMDD') - a.format('YYYYMMDD'))
     setDates(days)
     
