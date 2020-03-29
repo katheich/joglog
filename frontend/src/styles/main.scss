@@ -313,6 +313,27 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
     }
   }
 
+  i.arrow {
+    border: solid $green;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+
+    &.up {
+      margin-top: 10vh;
+      margin-bottom: 10px;
+      transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+    }
+    
+    &.down {
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+  }
+
+  
 
 
 }

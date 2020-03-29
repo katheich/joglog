@@ -59,21 +59,41 @@ const Calendar = (props) => {
   const [modalDate, setModalDate] = useState('')
 
   function lastMonth() {
-
     let days = []
-
     days.push(moment())
-  
-    for (let i = 1; i < 32; i++) {
-      const less = moment().subtract(i, 'days')
-      const more = moment().add(i, 'days')
-
-      days.push(less)
-      days.push(more)
-    }
+    days = days.concat(addDaysAfter(moment(), 15))
+    days = days.concat(addDaysBefore(moment(), 15))
     days = days.sort((a,b) => b.format('YYYYMMDD') - a.format('YYYYMMDD'))
     setDates(days)
     
+  }
+
+  function addDaysAfter(day, num) {
+    const addition = []
+    for (let i = 1; i < num; i++) {
+      addition.push(moment(day).add(i, 'days'))
+    }
+    return addition
+  }
+
+  function addDaysBefore(day, num) {
+    const addition = []
+    for (let i = 1; i < num; i++) {
+      addition.push(moment(day).subtract(i, 'days'))
+    }
+    return addition
+  }
+
+  function extendCalendar(direction) {
+    let currentDates = [...dates]
+    if (direction === 'up') {
+      currentDates = currentDates.concat(addDaysAfter(currentDates[0], 10))
+    }
+    if (direction === 'down') {
+      currentDates = currentDates.concat(addDaysBefore(currentDates[currentDates.length - 1], 10))
+    }
+    currentDates.sort((a,b) => b.format('YYYYMMDD') - a.format('YYYYMMDD'))
+    setDates(currentDates)
   }
 
   useEffect(() => {
@@ -131,8 +151,8 @@ const Calendar = (props) => {
       }}
     </Query>
 
-    <div className="container">
-
+    <div className="container has-text-centered">
+      <i className="arrow up" onClick={e => extendCalendar('up')}></i>
       <div className="table-container">
         <table className="table is-fullwidth is-hoverable">
           {/* <thead>
@@ -154,7 +174,9 @@ const Calendar = (props) => {
           </tbody>
         </table>
       </div>
+      <i className="arrow down" onClick={e => extendCalendar('down')}></i>
     </div>
+
 
     {modal ? <CalendarModal props={props} toggleModal={toggleModal} modalDate={modalDate} info={info} /> : <></>}
   </section>
