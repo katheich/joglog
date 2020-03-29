@@ -3,7 +3,7 @@ import moment from 'moment'
 
 import { formatTime } from '../lib/formatting'
 
-const CalendarRow = ({ day, info, handleModal }) => {
+const CalendarRow = ({ day, info, handleModal, mobile }) => {
 
   const date = moment(day).format('YYYYMMDD')
 
@@ -19,7 +19,7 @@ const CalendarRow = ({ day, info, handleModal }) => {
   >
     <td data-id={date}>{moment(day).format('dddd, DD MMMM YYYY')}</td>
 
-    <td className="schedule" data-id={date}>
+    <td className={'schedule'  + `${mobile === 'plans' ? '' : ' mobile-hidden'}`} data-id={date}>
       {race && <span className="race">
         <i className="fas fa-medal"></i>
         {race.name}
@@ -33,45 +33,45 @@ const CalendarRow = ({ day, info, handleModal }) => {
       </span>
       }
     </td>
-    <td className={'title is-size-5 schedule-category' + `${plan ? ' ' + plan.runtype.toLowerCase() : ''}`} data-id={date}>
+    <td className={'title is-size-5 schedule-category mobile-hidden'} data-id={date}>
       <span className="info">{plan && plan.runtype}</span>
     </td>
 
     {run ? <>
-      <td className="distance" data-id={date}>
+      <td className={'distance'  + `${mobile === 'runs' ? '' : ' mobile-hidden'}`} data-id={date}>
         <i className="fas fa-route"></i>
         <span className="info">{run.distance} {run.units.toLowerCase()}</span>
       </td>
-      <td className="duration" data-id={date}>
+      <td className={'duration'  + `${mobile === 'runs' ? '' : ' mobile-hidden'}`} data-id={date}>
         <i className='fas fa-hourglass-half'></i>
         <span className="info">{formatTime(run.duration, 'hms')}</span>
       </td>
-      <td className="pace" data-id={date}>
+      <td className={'pace'  + `${mobile === 'runs' ? '' : ' mobile-hidden'}`} data-id={date}>
         <i className='fas fa-stopwatch'></i>
         <span className="info">{formatTime(run.pace, 'ms')} min / {run.units.toLowerCase()}</span>
       </td>
-      <td className="hr" data-id={date}>
+      <td className={'hr'  + `${mobile === 'runs' ? '' : ' mobile-hidden'}`} data-id={date}>
         <i className="fas fa-heartbeat"></i>
         <span className="info">{run.avgHr} bpm</span>
       </td>
-      <td className="notes" data-id={date}>
+      <td className={'notes mobile-hidden'} data-id={date}>
         {run.notes && <div className="notes-container">
           <i className="fas fa-clipboard"></i>
           <div className="notes-info is-size-7">{run.notes}</div>
         </div>}
 
       </td>
-      <td className={'title is-size-5 run-category ' + run.runtype.toLowerCase()} data-id={date}>
+      <td className={'title is-size-5 mobile-hidden'} data-id={date}>
         {run.runtype}
       </td>
       </> 
       : <>
-      <td className="distance" data-id={date}></td>
-      <td className="duration" data-id={date}></td>
-      <td className="pace" data-id={date}></td>
-      <td className="hr" data-id={date}></td>
-      <td className="notes" data-id={date}></td>
-      <td className="run-category" data-id={date}></td>
+      <td className={'distance'  + `${mobile === 'runs' ? '' : ' mobile-hidden'}`} data-id={date}></td>
+      <td className={'duration'  + `${mobile === 'runs' ? '' : ' mobile-hidden'}`} data-id={date}></td>
+      <td className={'pace'  + `${mobile === 'runs' ? '' : ' mobile-hidden'}`} data-id={date}></td>
+      <td className={'hr'  + `${mobile === 'runs' ? '' : ' mobile-hidden'}`} data-id={date}></td>
+      <td className={'notes mobile-hidden'} data-id={date}></td>
+      <td className={'run-category mobile-hidden'} data-id={date}></td>
       </>}
 
   </tr>)

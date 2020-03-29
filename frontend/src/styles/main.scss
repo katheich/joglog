@@ -23,7 +23,9 @@ $input-focus-border-color: $primary;
 $input-focus-box-shadow-color: rgba($primary, 0.25);
 $table-row-active-background-color: rgba($primary, 0.5);
 $tabs-link-active-color: $green;
+$tabs-toggle-link-active-background-color: $green;
 $tabs-link-active-border-bottom-color: $green;
+$tabs-toggle-link-active-border-color: $green;
 
 // Update Bulma's global variables
 $family-sans-serif: 'Open Sans Condensed', sans-serif;
@@ -185,6 +187,11 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
       z-index: -1;
     }
     
+    .level-end {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   .button {
@@ -333,9 +340,6 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
     }
   }
 
-  
-
-
 }
 
 #calendar-modal {
@@ -398,5 +402,22 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
     .react-calendar__tile--active {
       background-color: rgba($primary, 0.8)
     }
+  }
+}
+
+// mobile compatibility ***************************************** //
+
+
+.mobile-only {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
   }
 }

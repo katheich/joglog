@@ -58,6 +58,7 @@ const Calendar = (props) => {
   const [data, setData] = useState([])
   const [modal, setModal] = useState(false)
   const [modalDate, setModalDate] = useState('')
+  const [mobile, setMobile] = useState('plans')
 
   function lastMonth() {
     let days = []
@@ -131,8 +132,17 @@ const Calendar = (props) => {
     setModal(!modal)
   }
 
+  function toggleMobileView() {
+    if (mobile === 'plans') {
+      setMobile('runs')
+    }
+    if (mobile === 'runs') {
+      setMobile('plans')
+    }
+  }
+
   return (<>
-  <Navbar />
+  <Navbar mobile={mobile} toggleMobileView={toggleMobileView} />
   
   <section className="section" id="calendar">
   
@@ -161,7 +171,7 @@ const Calendar = (props) => {
         <table className="table is-fullwidth is-hoverable">
           <tbody>
             {info.plans && info.runs && info.races && dates.map((day, i) => {
-              return <CalendarRow key={i} day={day} info={info} handleModal={handleModal} />
+              return <CalendarRow key={i} day={day} info={info} handleModal={handleModal} mobile={mobile} />
             })}
             {errors && <span>{errors}</span>}
           </tbody>
