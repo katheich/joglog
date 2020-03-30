@@ -11,7 +11,7 @@ import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { setContext } from 'apollo-link-context'
 
-import Auth from './lib/auth'
+import Auth from './lib/Auth'
 
 import Home from './components/Home'
 import Calendar from './components/Calendar'
