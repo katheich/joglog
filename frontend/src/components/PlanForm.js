@@ -157,7 +157,10 @@ const PlanForm = ( { date, modalDate, toggleModal, plan, updateInfo }) => {
         onCompleted={data => confirm(data.createPlan, 'create')} 
         onError={err => setErrors(err.message)}
       >
-        {postMutation => <button onClick={postMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
+        {postMutation => 
+          <button onClick={postMutation} className="button is-primary" disabled={info.description ? '' : 'disabled'}>
+            <i className="fas fa-check"></i>
+          </button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </>}  
@@ -168,7 +171,10 @@ const PlanForm = ( { date, modalDate, toggleModal, plan, updateInfo }) => {
         onCompleted={data => confirm(data.editPlan, 'update')} 
         onError={err => setErrors(err.message)}
       >
-        {editMutation => <button onClick={editMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
+        {editMutation => 
+          <button onClick={editMutation} className="button is-primary" disabled={info.description ? '' : 'disabled'}>
+            <i className="fas fa-check"></i>
+          </button>}
       </Mutation>
       <Mutation 
         mutation={DELETE_MUTATION} 
@@ -176,7 +182,10 @@ const PlanForm = ( { date, modalDate, toggleModal, plan, updateInfo }) => {
         onCompleted={data => confirm(data.deletePlan, 'delete')} 
         onError={err => setErrors(err.message)}
       >
-        {deleteMutation => <button onClick={deleteMutation} className="button is-danger"><i className="fas fa-trash-alt"></i></button>}
+        {deleteMutation => 
+          <button onClick={deleteMutation} className="button is-danger">
+            <i className="fas fa-trash-alt"></i>
+          </button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </> : <></>}     
