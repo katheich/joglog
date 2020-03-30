@@ -11,6 +11,7 @@ graphene-django = "*"
 django-filter = "*"
 django-graphql-jwt = "*"
 psycopg2-binary = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"
