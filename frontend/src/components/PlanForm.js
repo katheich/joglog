@@ -161,10 +161,21 @@ const PlanForm = ( { date, modalDate, toggleModal, plan, updateInfo }) => {
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </>}  
-      {plan ? <><Mutation mutation={EDIT_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data.editPlan, 'update')} onError={err => setErrors(err.message)}>
+      {plan ? <>
+      <Mutation 
+        mutation={EDIT_MUTATION} 
+        variables={{ ...info }} 
+        onCompleted={data => confirm(data.editPlan, 'update')} 
+        onError={err => setErrors(err.message)}
+      >
         {editMutation => <button onClick={editMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
       </Mutation>
-      <Mutation mutation={DELETE_MUTATION} variables={{ id: info.id }} onCompleted={data => confirm(data.deletePlan, 'delete')} onError={err => setErrors(err.message)}>
+      <Mutation 
+        mutation={DELETE_MUTATION} 
+        variables={{ id: info.id }} 
+        onCompleted={data => confirm(data.deletePlan, 'delete')} 
+        onError={err => setErrors(err.message)}
+      >
         {deleteMutation => <button onClick={deleteMutation} className="button is-danger"><i className="fas fa-trash-alt"></i></button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
