@@ -231,6 +231,7 @@ class EditRun(graphene.Mutation):
 
 class DeleteRun(graphene.Mutation):
     ok = graphene.Boolean()
+    id = graphene.ID()
 
     class Arguments:
         id = graphene.ID()
@@ -246,7 +247,7 @@ class DeleteRun(graphene.Mutation):
         run.delete()
         ok = True
 
-        return ok
+        return DeleteRun(id=id, ok=ok)
 
 class CreateRace(graphene.Mutation):
     id = graphene.Int()
@@ -303,6 +304,7 @@ class EditRace(graphene.Mutation):
 
 class DeleteRace(graphene.Mutation):
     ok = graphene.Boolean()
+    id = graphene.ID()
 
     class Arguments:
         id = graphene.ID()
@@ -318,7 +320,7 @@ class DeleteRace(graphene.Mutation):
         race.delete()
         ok = True
 
-        return ok
+        return DeleteRace(id=id, ok=ok)
 
 
 class Mutation(graphene.ObjectType):
