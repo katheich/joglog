@@ -116,6 +116,7 @@ class EditPlan(graphene.Mutation):
 
 class DeletePlan(graphene.Mutation):
     ok = graphene.Boolean()
+    id = graphene.ID()
 
     class Arguments:
         id = graphene.ID()
@@ -127,11 +128,11 @@ class DeletePlan(graphene.Mutation):
 
         if not user == plan.user:
             raise Exception('Not authorised to delete this.')
-
+        
         plan.delete()
         ok = True
 
-        return ok
+        return DeletePlan(id=id)
 
 
 class CreateRun(graphene.Mutation):
