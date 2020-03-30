@@ -10,6 +10,14 @@ const POST_MUTATION = gql`
   mutation createRun($units: String!, $date: Date!, $runtype: String!, $distance: Decimal!, $duration: Decimal!, $avgHr: Int!, $notes: String!) {
     createRun (units: $units, date: $date, runtype: $runtype, distance: $distance, duration:$duration, avgHr:$avgHr, notes:$notes) {
       id
+      date
+      distance
+      duration
+      pace
+      units
+      runtype
+      avgHr
+      notes
     }
   }
 `
@@ -18,6 +26,14 @@ const EDIT_MUTATION = gql`
 mutation editRun($id: ID!, $units: String!, $date: Date!, $runtype: String!, $distance: Decimal!, $duration: Decimal!, $avgHr: Int!, $notes: String!) {
   editRun (id: $id, units: $units, date: $date, runtype: $runtype, distance: $distance, duration:$duration, avgHr:$avgHr, notes:$notes) {
     id
+    date
+    distance
+    duration
+    pace
+    units
+    runtype
+    avgHr
+    notes
   }
 }
 `
@@ -26,11 +42,12 @@ const DELETE_MUTATION = gql`
   mutation deleteRun($id: ID!) {
     deleteRun (id: $id) {
       ok
+      id
     }
   }
 `
 
-const RunForm = ( { date, modalDate, toggleModal, run }) => {
+const RunForm = ( { date, modalDate, toggleModal, run, updateInfo }) => {
 
   const initialInfo = {
     distance: '',
@@ -69,8 +86,10 @@ const RunForm = ( { date, modalDate, toggleModal, run }) => {
     setErrors(newErrors)
   }
 
-  const confirm = () => {
+  const confirm = (data, operation) => {
+    console.log('DATA RECEIVED IN RESPONSE', data)
     toggleModal()
+    updateInfo(operation, 'runs', data)
   }
 
   useEffect(() => {
@@ -241,15 +260,15 @@ const RunForm = ( { date, modalDate, toggleModal, run }) => {
         </div>
       </div>
 
-      {run ? <></> : <><Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+      {run ? <></> : <><Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data.createRun, 'create')} onError={err => setErrors(err.message)}>
         {postMutation => <button onClick={postMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </>}  
-      {run ? <><Mutation mutation={EDIT_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+      {run ? <><Mutation mutation={EDIT_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data.editRun, 'update')} onError={err => setErrors(err.message)}>
         {editMutation => <button onClick={editMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
       </Mutation>
-      <Mutation mutation={DELETE_MUTATION} variables={{ id: info.id }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+      <Mutation mutation={DELETE_MUTATION} variables={{ id: info.id }} onCompleted={data => confirm(data.deleteRun, 'delete')} onError={err => setErrors(err.message)}>
         {deleteMutation => <button onClick={deleteMutation} className="button is-danger"><i className="fas fa-trash-alt"></i></button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}

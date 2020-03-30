@@ -72,8 +72,8 @@ const CalendarModal = ({ toggleModal, modalDate, info, updateInfo }) => {
         </div>
 
         {purpose === 'plan' ? <PlanForm date={date} modalDate={modalDate} toggleModal={toggleModal} plan ={plan} updateInfo={updateInfo} /> : <></>}
-        {purpose === 'run' ? <RunForm date={date} modalDate={modalDate} toggleModal={toggleModal} run={run} /> : <></>}
-        {purpose === 'race' ? <RaceForm date={date} modalDate={modalDate} toggleModal={toggleModal} race={race} /> : <></>}
+        {purpose === 'run' ? <RunForm date={date} modalDate={modalDate} toggleModal={toggleModal} run={run} updateInfo={updateInfo} /> : <></>}
+        {purpose === 'race' ? <RaceForm date={date} modalDate={modalDate} toggleModal={toggleModal} race={race} updateInfo={updateInfo} /> : <></>}
 
       </div>
     </div>
