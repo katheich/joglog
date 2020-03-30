@@ -224,19 +224,19 @@ span.icon.is-small.is-left, .select.is-primary:not(:hover)::after {
     max-width: 20vw;
     word-wrap: breakword;
   }
-
-  .is-race{
-    background-color: rgba($blue, 0.3);
-    color: white;
-    font-weight: 800;
-  }
-
+  
   .date.is-today {
     background-color: rgba($primary, 0.4);
   }
-
+  
   .sa, .su {
     background-color: rgba(rgb(240, 240, 240), 0.5);
+  }
+
+  .is-race {
+    background-color: rgba($blue, 0.3);
+    color: white;
+    font-weight: 800;
   }
 
   tr:hover {
