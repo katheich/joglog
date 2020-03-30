@@ -128,7 +128,7 @@ class DeletePlan(graphene.Mutation):
 
         if not user == plan.user:
             raise Exception('Not authorised to delete this.')
-        
+
         plan.delete()
         ok = True
 
