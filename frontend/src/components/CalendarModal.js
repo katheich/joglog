@@ -6,7 +6,7 @@ import PlanForm from './PlanForm'
 import RunForm from './RunForm'
 import RaceForm from './RaceForm'
 
-const CalendarModal = ({ toggleModal, modalDate, info }) => {
+const CalendarModal = ({ toggleModal, modalDate, info, updateInfo }) => {
 
   const [calendar, setCalendar] = useState(false)
   const [date, setDate] = useState('')
@@ -71,7 +71,7 @@ const CalendarModal = ({ toggleModal, modalDate, info }) => {
           </ul>
         </div>
 
-        {purpose === 'plan' ? <PlanForm date={date} modalDate={modalDate} toggleModal={toggleModal} plan ={plan} /> : <></>}
+        {purpose === 'plan' ? <PlanForm date={date} modalDate={modalDate} toggleModal={toggleModal} plan ={plan} updateInfo={updateInfo} /> : <></>}
         {purpose === 'run' ? <RunForm date={date} modalDate={modalDate} toggleModal={toggleModal} run={run} /> : <></>}
         {purpose === 'race' ? <RaceForm date={date} modalDate={modalDate} toggleModal={toggleModal} race={race} /> : <></>}
 

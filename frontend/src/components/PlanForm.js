@@ -10,6 +10,7 @@ const POST_MUTATION = gql`
       id
       description
       date
+      runtype
     }
   }
 `
@@ -20,6 +21,7 @@ const EDIT_MUTATION = gql`
       id
       description
       date
+      runtype
     }
   }
 `
@@ -32,7 +34,7 @@ const DELETE_MUTATION = gql`
   }
 `
 
-const PlanForm = ( { date, modalDate, toggleModal, plan }) => {
+const PlanForm = ( { date, modalDate, toggleModal, plan, updateInfo }) => {
 
   const initialInfo = {
     description: '',
@@ -63,8 +65,10 @@ const PlanForm = ( { date, modalDate, toggleModal, plan }) => {
     setInfo({ ...info, [e.target.id]: !info[e.target.id] })
   }
 
-  const confirm = () => {
+  const confirm = (data, operation) => {
+    console.log('DATA RECEIVED IN RESPONSE', data)
     toggleModal()
+    updateInfo(operation, 'plans', data)
   }
 
   useEffect(() => {
@@ -86,7 +90,6 @@ const PlanForm = ( { date, modalDate, toggleModal, plan }) => {
       setInfo({ ...info, date: moment(date).format('YYYY-MM-DD') })
     }
   }, [date])
-
 
   return <div className="has-text-centered">
     {console.log('errors', errors)}
@@ -142,15 +145,21 @@ const PlanForm = ( { date, modalDate, toggleModal, plan }) => {
           <label htmlFor="skipped">Skipped</label>
         </div>
       </div>
-      {plan ? <></> : <><Mutation mutation={POST_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+      {plan ? <></> : <>
+      <Mutation 
+        mutation={POST_MUTATION} 
+        variables={{ ...info }} 
+        onCompleted={data => confirm(data.createPlan, 'create')} 
+        onError={err => setErrors(err.message)}
+      >
         {postMutation => <button onClick={postMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </>}  
-      {plan ? <><Mutation mutation={EDIT_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+      {plan ? <><Mutation mutation={EDIT_MUTATION} variables={{ ...info }} onCompleted={data => confirm(data.editPlan, 'update')} onError={err => setErrors(err.message)}>
         {editMutation => <button onClick={editMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
       </Mutation>
-      <Mutation mutation={DELETE_MUTATION} variables={{ id: info.id }} onCompleted={data => confirm(data)} onError={err => setErrors(err.message)}>
+      <Mutation mutation={DELETE_MUTATION} variables={{ id: info.id }} onCompleted={data => confirm(data, 'delete')} onError={err => setErrors(err.message)}>
         {deleteMutation => <button onClick={deleteMutation} className="button is-danger"><i className="fas fa-trash-alt"></i></button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}

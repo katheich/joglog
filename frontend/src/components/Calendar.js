@@ -141,14 +141,30 @@ const Calendar = (props) => {
     }
   }
 
+  function updateInfo(operation, infoType, newInfo) {
+
+    if (operation === 'create') {
+      const updatedInfo = [ ...info[infoType] ]
+      updatedInfo.push(newInfo)
+      setInfo({ ...info, [infoType]: updatedInfo })
+    }
+
+    if (operation === 'update') {
+      const updatedInfo = info[infoType].filter(datapoint => datapoint.id !== newInfo.id)
+      updatedInfo.push(newInfo)
+      setInfo({ ...info, [infoType]: updatedInfo })
+    }
+    
+  } 
+
   return (<>
   <Navbar props={props} mobile={mobile} toggleMobileView={toggleMobileView} />
   
   <section className="section" id="calendar">
   
-    {console.log('INFO', info)}
+    {/* {console.log('INFO', info)}
     {console.log('DATA', data)}
-    {console.log('ERRORS', errors)}
+    {console.log('ERRORS', errors)} */}
 
     <Query query={CALENDAR_QUERY}>
       {({ loading, error, data }) => {
@@ -181,7 +197,7 @@ const Calendar = (props) => {
     </div>
 
 
-    {modal ? <CalendarModal props={props} toggleModal={toggleModal} modalDate={modalDate} info={info} /> : <></>}
+    {modal ? <CalendarModal props={props} toggleModal={toggleModal} modalDate={modalDate} info={info} updateInfo={updateInfo} /> : <></>}
   </section>
   </>)
 }
