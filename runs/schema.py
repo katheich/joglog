@@ -52,9 +52,9 @@ class CreatePlan(graphene.Mutation):
     user = graphene.Field(UserType)
 
     class Arguments:
-        runtype = graphene.String()
-        date = graphene.Date()
-        description = graphene.String()
+        runtype = graphene.String(required=True)
+        date = graphene.Date(required=True)
+        description = graphene.String(required=True)
         completed = graphene.Boolean()
         skipped = graphene.Boolean()
 
@@ -83,10 +83,10 @@ class EditPlan(graphene.Mutation):
     skipped = graphene.Boolean()
 
     class Arguments:
-        id = graphene.ID()
-        runtype = graphene.String()
-        date = graphene.Date()
-        description = graphene.String()
+        id = graphene.ID(required=True)
+        runtype = graphene.String(required=True)
+        date = graphene.Date(required=True)
+        description = graphene.String(required=True)
         completed = graphene.Boolean()
         skipped = graphene.Boolean()
 
@@ -148,11 +148,11 @@ class CreateRun(graphene.Mutation):
     user = graphene.Field(UserType)
 
     class Arguments:
-        runtype = graphene.String()
-        date = graphene.Date()
-        units = graphene.String()
-        distance = graphene.Decimal()
-        duration = graphene.Decimal()
+        runtype = graphene.String(required=True)
+        date = graphene.Date(required=True)
+        units = graphene.String(required=True)
+        distance = graphene.Decimal(required=True)
+        duration = graphene.Decimal(required=True)
         avg_HR = graphene.Int()
         notes = graphene.String()
 
@@ -189,12 +189,12 @@ class EditRun(graphene.Mutation):
     user = graphene.Field(UserType)
 
     class Arguments:
-        id = graphene.ID()
-        runtype = graphene.String()
-        date = graphene.Date()
-        units = graphene.String()
-        distance = graphene.Decimal()
-        duration = graphene.Decimal()
+        id = graphene.ID(required=True)
+        runtype = graphene.String(required=True)
+        date = graphene.Date(required=True)
+        units = graphene.String(required=True)
+        distance = graphene.Decimal(required=True)
+        duration = graphene.Decimal(required=True)
         avg_HR = graphene.Int()
         notes = graphene.String()
 
