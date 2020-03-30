@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Auth from '../lib/auth'
+import Auth from '../lib/Auth'
 
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
