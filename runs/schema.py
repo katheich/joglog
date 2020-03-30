@@ -132,7 +132,7 @@ class DeletePlan(graphene.Mutation):
         plan.delete()
         ok = True
 
-        return DeletePlan(id=id)
+        return DeletePlan(id=id, ok=ok)
 
 
 class CreateRun(graphene.Mutation):
