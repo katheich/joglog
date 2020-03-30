@@ -154,6 +154,12 @@ const Calendar = (props) => {
       updatedInfo.push(newInfo)
       setInfo({ ...info, [infoType]: updatedInfo })
     }
+
+    if (operation === 'delete') {
+      console.log(info[infoType], newInfo)
+      const updatedInfo = info[infoType].filter(datapoint => datapoint.id !== newInfo.id)
+      setInfo({ ...info, [infoType]: updatedInfo })
+    }
     
   } 
 
