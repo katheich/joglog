@@ -8,9 +8,11 @@ const POST_MUTATION = gql`
   mutation createPlan($completed: Boolean!, $description: String!, $date: Date!, $runtype: String!, $skipped: Boolean!) {
     createPlan (completed: $completed, description: $description, date:$date, runtype: $runtype, skipped: $skipped) {
       id
-      description
       date
+      description
       runtype
+      completed
+      skipped
     }
   }
 `
@@ -19,9 +21,11 @@ const EDIT_MUTATION = gql`
   mutation editPlan($id: ID!, $completed: Boolean!, $description: String!, $date: Date!, $runtype: String!, $skipped: Boolean!) {
     editPlan (id: $id, completed: $completed, description: $description, date:$date, runtype: $runtype, skipped: $skipped) {
       id
-      description
       date
+      description
       runtype
+      completed
+      skipped
     }
   }
 `
