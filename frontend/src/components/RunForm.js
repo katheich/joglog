@@ -267,7 +267,10 @@ const RunForm = ( { date, modalDate, toggleModal, run, updateInfo }) => {
         onCompleted={data => confirm(data.createRun, 'create')} 
         onError={err => setErrors(err.message)}
       >
-        {postMutation => <button onClick={postMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
+        {postMutation => 
+          <button onClick={postMutation} className="button is-primary" disabled={info.distance && info.duration && info.units && info.avgHr ? '' : 'disabled'}>
+            <i className="fas fa-check"></i>
+          </button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </>}  
@@ -278,7 +281,10 @@ const RunForm = ( { date, modalDate, toggleModal, run, updateInfo }) => {
         onCompleted={data => confirm(data.editRun, 'update')} 
         onError={err => setErrors(err.message)}
       >
-        {editMutation => <button onClick={editMutation} className="button is-primary"><i className="fas fa-check"></i></button>}
+        {editMutation => 
+          <button onClick={editMutation} className="button is-primary" disabled={info.distance && info.duration && info.units && info.avgHr ? '' : 'disabled'}>
+            <i className="fas fa-check"></i>
+          </button>}
       </Mutation>
       <Mutation 
         mutation={DELETE_MUTATION} 
@@ -286,7 +292,10 @@ const RunForm = ( { date, modalDate, toggleModal, run, updateInfo }) => {
         onCompleted={data => confirm(data.deleteRun, 'delete')} 
         onError={err => setErrors(err.message)}
       >
-        {deleteMutation => <button onClick={deleteMutation} className="button is-danger"><i className="fas fa-trash-alt"></i></button>}
+        {deleteMutation => 
+          <button onClick={deleteMutation} className="button is-danger">
+            <i className="fas fa-trash-alt"></i>
+          </button>}
       </Mutation>
       {errors && <small className="help is-danger">{errors}</small>}
       </> : <></>}     
