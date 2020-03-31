@@ -51,8 +51,6 @@ Coming soon!
 
 ### Planning
 
-Coming soon!
-
 
 ### Back-end
 
