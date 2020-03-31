@@ -11,7 +11,7 @@ const HomeModal = ({ props, purpose, handleModal }) => {
     <div className="modal-content">
       <div className="box">
         {purpose === 'login' ? <LoginForm purpose={purpose} props={props} /> : <></>}
-        {purpose === 'register' ? <RegisterForm purpose={purpose} /> : <></>}
+        {purpose === 'register' ? <RegisterForm purpose={purpose} handleModal={e => handleModal(e)} /> : <></>}
       </div>
     </div>
   </div>)

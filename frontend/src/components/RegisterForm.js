@@ -23,14 +23,14 @@ const POST_MUTATION = gql`
 `
 
 
-const LoginForm = () => {
+const RegisterForm = ({ handleModal }) => {
 
   const [info, setInfo] = useState(initialInfo)
   const [errors, setErrors] = useState(initialErrors)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    return
+    handleModal(e)
   }
 
   const handleChange = (e) => {
@@ -42,7 +42,7 @@ const LoginForm = () => {
   }
 
   const confirm = () => {
-    // console.log('SUCCESSFULLY REGISTERED')
+    console.log('SUCCESSFULLY REGISTERED')
   }
 
   return <div className="has-text-centered">
@@ -99,4 +99,4 @@ const LoginForm = () => {
 
 }
 
-export default LoginForm 
+export default RegisterForm 
