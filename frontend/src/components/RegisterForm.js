@@ -58,7 +58,7 @@ const RegisterForm = ({ handleModal }) => {
             onChange={handleChange}
           />
           <span className="icon is-small is-left">
-            <i className="fas fa-envelope"></i>
+            <i className="fas fa-user"></i>
           </span>
         </div>
       </div>
