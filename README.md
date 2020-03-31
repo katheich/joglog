@@ -4,9 +4,13 @@
 
 ## Overview
 
-This is a personal project I worked on by myself mostly during my job search after finishing the Software Engineering Immersive course at General Assembly. The idea was to keep practicing the use of React, Django and PostgreSQL, but to push my knowledge by setting up a GraphQL API.
+This is a personal project I worked on by myself, mostly during the job search after finishing the Software Engineering Immersive course at General Assembly. The idea was to keep practicing the use of React, Django and PostgreSQL, but to also push my knowledge by setting up a GraphQL API.
 
-Jog Log is allows you to keep track of your running plans and log your actual runs. Inspired by my old system of using Excel Sheets to keep track of race training plans, the app provides a calendar overview in the form of a table, showing the scheduled plans, whether they were completed or skipped, and the statistics tracked of actual runs (e.g. distance, duration, pace and average heart rate). It also allows for scheduling races and for indicating whether plans and runs are of easy, tempo, intervals or endurance category.
+Jog Log allows you to keep track of your running plans and log your actual runs. Inspired by my old system of using Excel Sheets to keep track of race training plans, the app provides a calendar overview in the form of a table, showing the following: 
+1) scheduled plans, whether they were completed or skipped, 
+2) the statistics tracked of actual runs (e.g. distance, duration, pace and average heart rate) and 
+3) race days and names. 
+It also allows you to indicate whether plans and runs are of easy, tempo, intervals or endurance category, or uncategorised.
 
 You can launch the app on Heroku [here](https://joglog-ke.herokuapp.com/), or find the GitHub repo [here](https://github.com/katheich/joglog).
 
