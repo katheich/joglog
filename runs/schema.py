@@ -37,7 +37,7 @@ class Query(graphene.ObjectType):
         return Run.objects.filter(user=info.context.user)
 
     @login_required
-    def resolve_my_(self, info):
+    def resolve_my_races(self, info):
         return Plan.objects.filter(user=info.context.user)
 
 
