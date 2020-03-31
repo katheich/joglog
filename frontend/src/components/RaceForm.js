@@ -57,11 +57,11 @@ const RaceForm = ( { date, modalDate, toggleModal, race, updateInfo }) => {
     const newErrors = ''
     setInfo(newInfo)
     setErrors(newErrors)
-    console.log(info)
+    // console.log(info)
   }
 
   const confirm = (data, operation) => {
-    console.log('DATA RECEIVED IN RESPONSE', data)
+    // console.log('DATA RECEIVED IN RESPONSE', data)
     toggleModal()
     updateInfo(operation, 'races', data)
   }
@@ -84,9 +84,9 @@ const RaceForm = ( { date, modalDate, toggleModal, race, updateInfo }) => {
   }, [date])
 
   return <div className="has-text-centered">
-    {console.log('errors', errors)}
+    {/* {console.log('errors', errors)}
     {console.log('editing', info)}
-    {console.log('previous data', race)}
+    {console.log('previous data', race)} */}
     <form className="form form-home" onSubmit={handleSubmit}>
       <div className="field">
         <div className="control has-icons-left">

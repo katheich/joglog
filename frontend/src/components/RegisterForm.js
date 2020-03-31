@@ -38,15 +38,15 @@ const LoginForm = () => {
     const newErrors = ''
     setInfo(newInfo)
     setErrors(newErrors)
-    console.log(info)
+    // console.log(info)
   }
 
   const confirm = () => {
-    console.log('SUCCESSFULLY REGISTERED')
+    // console.log('SUCCESSFULLY REGISTERED')
   }
 
   return <div className="has-text-centered">
-    {console.log(errors)}
+    {/* {console.log(errors)} */}
     <form className="form form-home" onSubmit={handleSubmit}>
       <div className="field">
         <div className="control has-icons-left">

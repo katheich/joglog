@@ -13,7 +13,7 @@ const Home = (props) => {
 
   function handleModal(e) {
     e.preventDefault
-    console.log(e.target.dataset.purpose)
+    // console.log(e.target.dataset.purpose)
     setModal(!modal)
     setPurpose(e.target.dataset.purpose)
   } 

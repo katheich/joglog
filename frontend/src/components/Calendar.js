@@ -110,7 +110,7 @@ const Calendar = (props) => {
     newInfo.runs = data.myRuns.edges.map(run => run.node)
     newInfo.races = data.myRaces.edges.map(race => race.node)
 
-    console.log(moment(newInfo.plans[0].date).format('YYYYMMDD'))
+    // console.log(moment(newInfo.plans[0].date).format('YYYYMMDD'))
 
     return newInfo
   }

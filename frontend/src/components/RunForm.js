@@ -87,7 +87,7 @@ const RunForm = ( { date, modalDate, toggleModal, run, updateInfo }) => {
   }
 
   const confirm = (data, operation) => {
-    console.log('DATA RECEIVED IN RESPONSE', data)
+    // console.log('DATA RECEIVED IN RESPONSE', data)
     toggleModal()
     updateInfo(operation, 'runs', data)
   }
@@ -120,9 +120,9 @@ const RunForm = ( { date, modalDate, toggleModal, run, updateInfo }) => {
 
   return <div className="has-text-centered">
     {/* {console.log('errors', errors)} */}
-    {console.log('editing', info)}
+    {/* {console.log('editing', info)} */}
     {/* {console.log('previous data', run)} */}
-    {console.log('duration', duration)}
+    {/* {console.log('duration', duration)} */}
     <form className="form form-home" onSubmit={handleSubmit}>
       <div className="distancefields">
         <div className="field">

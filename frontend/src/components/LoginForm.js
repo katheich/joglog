@@ -35,11 +35,11 @@ const LoginForm = ({ props }) => {
     const newErrors = ''
     setInfo(newInfo)
     setErrors(newErrors)
-    console.log(info)
+    // console.log(info)
   }
 
   const confirm = (data) => {
-    console.log('SUCCESS', data)
+    // console.log('SUCCESS', data)
     const token = data.tokenAuth.token
     setErrors(data.errors)
     localStorage.setItem(AUTH_TOKEN, token)

@@ -63,7 +63,7 @@ const PlanForm = ( { date, modalDate, toggleModal, plan, updateInfo }) => {
     const newErrors = ''
     setInfo(newInfo)
     setErrors(newErrors)
-    console.log(info)
+    // console.log(info)
   }
 
   function handleCheck(e) {
@@ -71,7 +71,7 @@ const PlanForm = ( { date, modalDate, toggleModal, plan, updateInfo }) => {
   }
 
   const confirm = (data, operation) => {
-    console.log('DATA RECEIVED IN RESPONSE', data)
+    // console.log('DATA RECEIVED IN RESPONSE', data)
     toggleModal()
     updateInfo(operation, 'plans', data)
   }
@@ -97,9 +97,9 @@ const PlanForm = ( { date, modalDate, toggleModal, plan, updateInfo }) => {
   }, [date])
 
   return <div className="has-text-centered">
-    {console.log('errors', errors)}
+    {/* {console.log('errors', errors)}
     {console.log('editing', info)}
-    {console.log('previous data', plan)}
+    {console.log('previous data', plan)} */}
     <form className="form form-home" onSubmit={handleSubmit}>
       <div className="field">
         <div className="control has-icons-left">
