@@ -17,7 +17,7 @@ import Home from './components/Home'
 import Calendar from './components/Calendar'
 
 const httpLink = createHttpLink({
-  uri: '/api'
+  uri: '/graphql/'
 })
 
 const authLink = setContext((_, { headers }) => {

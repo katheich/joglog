@@ -1,4 +1,5 @@
 import os
+import mimetypes
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseNotFound
 
@@ -16,6 +17,7 @@ class Assets(View):
 
         if os.path.isfile(path):
             with open(path, 'rb') as file:
-                return HttpResponse(file.read())
+                mimetype = mimetypes.guess_type(path, strict=True)[0]
+                return HttpResponse(file.read(), content_type=mimetype)
         else:
             return HttpResponseNotFound()
