@@ -16,18 +16,9 @@ You can launch the app on Heroku [here](https://joglog-ke.herokuapp.com/), or fi
 
 
 ## Table of contents
-1. [Brief](#Brief)
-2. [Technologies used](#Technologies-used)
-3. [Approach](#Approach)
-    - [Planning](#Planning)
-    - [Back-end](#Back-end)
-    - [Front-end](#Front-end)
-    - [File Structure](#File-structure)
-4. [Screenshots](#Screenshots)
-5. [Potential future features](#Potential-future-features)
-6. [Bugs](#Bugs)
-7. [Lessons learned](#Lessons-learned)
-8. [Credit](#credit)
+1. [Technologies used](#Technologies-used)
+2. [Screenshots](#Screenshots)
+3. [Credit](#credit)
 
 
 
@@ -48,23 +39,6 @@ You can launch the app on Heroku [here](https://joglog-ke.herokuapp.com/), or fi
 - Bulma
 - Google Fonts
 - Adobe Photoshop
-
-## Approach
-
-Coming soon!
-
-### Planning
-
-
-### Back-end
-
-
-### Front-end
-
-
-### File structure
-
-
 
 ## Screenshots
 
@@ -91,22 +65,9 @@ Coming soon!
 ![Mobile 3](./docs/screenshots/mobile3.png)
 
 
-## Potential future features
-
-Coming soon!
-
-
-## Bugs 
-
-Coming soon!
-
-
-## Lessons learned
-
-Coming soon!
-
 
 ## Credit
 
-Coming soon!
+Shoe icon made by [Freepik](https://www.flaticon.com/authors/freepik), pencil icon made by [smallikeart](https://www.flaticon.com/authors/smalllikeart) from [www.flaticon.com](www.flaticon.com).
 
+[Jogging image](https://pixabay.com/photos/jogging-fitness-jogger-movement-4211946/) from pixabay.
