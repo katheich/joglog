@@ -12,8 +12,6 @@ Jog Log allows you to keep track of your running plans and log your actual runs.
 3) race days and names. 
 It also allows you to indicate whether plans and runs are of easy, tempo, intervals or endurance category, or uncategorised.
 
-You can launch the app on Heroku [here](https://joglog-ke.herokuapp.com/), or find the GitHub repo [here](https://github.com/katheich/joglog).
-
 
 ## Table of contents
 1. [Technologies used](#Technologies-used)
